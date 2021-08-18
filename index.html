@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/18/markdown%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2021/08/18/markdown%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">markdown备忘录</a>
         </h2>
 
         <div class="post-meta">
@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-08-18 14:42:22 / Modified: 14:49:38" itemprop="dateCreated datePublished" datetime="2021-08-18T14:42:22+08:00">2021-08-18</time>
+              <time title="Created: 2021-08-18 14:42:22 / Modified: 15:07:20" itemprop="dateCreated datePublished" datetime="2021-08-18T14:42:22+08:00">2021-08-18</time>
             </span>
 
           
@@ -184,11 +184,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="markdown备忘录"><a href="#markdown备忘录" class="headerlink" title="markdown备忘录"></a>markdown备忘录</h1><h1 id="就是一级标题"><a href="#就是一级标题" class="headerlink" title="# 就是一级标题"></a># 就是一级标题</h1><h2 id="就是二级标题"><a href="#就是二级标题" class="headerlink" title="## 就是二级标题"></a>## 就是二级标题</h2><h3 id="完全和html的-lt-h1-gt-到-lt-h6-gt-标签对应"><a href="#完全和html的-lt-h1-gt-到-lt-h6-gt-标签对应" class="headerlink" title="完全和html的&lt;h1&gt;到&lt;h6&gt;标签对应"></a>完全和html的&lt;h1&gt;到&lt;h6&gt;标签对应</h3><ul>
-<li>* 这个是前面加一个点</li>
+          <h1 id="就是一级标题"><a href="#就是一级标题" class="headerlink" title="# 就是一级标题"></a># 就是一级标题</h1><h2 id="就是二级标题"><a href="#就是二级标题" class="headerlink" title="## 就是二级标题"></a>## 就是二级标题</h2><h3 id="html的-lt-h1-gt-到-lt-h6-gt-标签对应"><a href="#html的-lt-h1-gt-到-lt-h6-gt-标签对应" class="headerlink" title="html的&lt;h1&gt;到&lt;h6&gt;标签对应"></a>html的&lt;h1&gt;到&lt;h6&gt;标签对应</h3><ul>
+<li>*  前面加一个点</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```回车 召唤代码块</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <p>这个是表格的代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|Name|Gender|Grade|</span><br><span class="line">|----|:-----:|:-----:|</span><br><span class="line">|liming|male|95|</span><br><span class="line">|wahua|female|97|</span><br></pre></td></tr></table></figure>
+
+
 
 <table>
 <thead>
@@ -242,7 +250,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/18/DIMP_dataengine%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2021/08/18/DIMP_dataengine%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">DIMP data engine的全流程学习</a>
         </h2>
 
         <div class="post-meta">
@@ -251,16 +259,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-08-18 14:33:27" itemprop="dateCreated datePublished" datetime="2021-08-18T14:33:27+08:00">2021-08-18</time>
+              <time title="Created: 2021-08-18 14:33:27 / Modified: 15:07:47" itemprop="dateCreated datePublished" datetime="2021-08-18T14:33:27+08:00">2021-08-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-08-13 15:02:21" itemprop="dateModified" datetime="2021-08-13T15:02:21+08:00">2021-08-13</time>
-              </span>
 
           
 
@@ -273,7 +275,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="主程序入口"><a href="#主程序入口" class="headerlink" title="主程序入口"></a>主程序入口</h1><p>注解:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br></pre></td></tr></table></figure>
+
+<p>SpringBoot的主程序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ComponentScan</span></span><br></pre></td></tr></table></figure>
+
+<p>创建一个配置类，在配置类上添加 @ComponentScan 注解。该注解默认会扫描该类所在的包下所有的配置类，相当于之前的 &lt;context:component-scan&gt;</p>
+
       
     </div>
 
@@ -306,7 +315,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/18/springboot%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2021/08/18/springboot%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">SpringBoot学习</a>
         </h2>
 
         <div class="post-meta">
@@ -317,7 +326,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-08-18 14:27:29 / Modified: 14:29:15" itemprop="dateCreated datePublished" datetime="2021-08-18T14:27:29+08:00">2021-08-18</time>
+              <time title="Created: 2021-08-18 14:27:29 / Modified: 15:07:12" itemprop="dateCreated datePublished" datetime="2021-08-18T14:27:29+08:00">2021-08-18</time>
             </span>
 
           
@@ -335,6 +344,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br></pre></td></tr></table></figure>
 
 <p>SpringBoot的主程序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ComponentScan</span></span><br></pre></td></tr></table></figure>
+
+<p>创建一个配置类，在配置类上添加 @ComponentScan 注解。该注解默认会扫描该类所在的包下所有的配置类，相当于之前的 &lt;context:component-scan&gt;</p>
 
       
     </div>
@@ -432,7 +444,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/16/centos7%E5%AE%89%E8%A3%85Hadoop%E5%85%A8%E6%B5%81%E7%A8%8B/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2021/08/16/centos7%E5%AE%89%E8%A3%85Hadoop%E5%85%A8%E6%B5%81%E7%A8%8B/" class="post-title-link" itemprop="url">hadoop建立集群</a>
         </h2>
 
         <div class="post-meta">
@@ -441,10 +453,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-08-16 14:12:08 / Modified: 16:29:08" itemprop="dateCreated datePublished" datetime="2021-08-16T14:12:08+08:00">2021-08-16</time>
+              <time title="Created: 2021-08-16 14:12:08" itemprop="dateCreated datePublished" datetime="2021-08-16T14:12:08+08:00">2021-08-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-08-18 15:08:16" itemprop="dateModified" datetime="2021-08-18T15:08:16+08:00">2021-08-18</time>
+              </span>
 
           
 
@@ -457,9 +475,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>hadoop在本地建立集群进行测试</h1>
-
-<p>下载centos7.iso, 教程自查</p>
+          <h1 id="hadoop在本地建立集群进行测试"><a href="#hadoop在本地建立集群进行测试" class="headerlink" title="hadoop在本地建立集群进行测试"></a>hadoop在本地建立集群进行测试</h1><p>下载centos7.iso, 教程自查</p>
 <p>使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player 教程自查</p>
 <p>虚拟机内存给8G, 硬盘给到30G, CPU给到2个,  网络设置为host共享(只在本地建立集群进行测试)</p>
 
