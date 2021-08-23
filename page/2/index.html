@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/2020-8-20-mininet/">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/hexo+next%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,182 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/09/2020-8-20-mininet/" class="post-title-link" itemprop="url">mininet学习日志</a>
+            <a href="/2021/08/09/hexo+next%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">一次hexo+next的建站记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-08-09 13:17:23" itemprop="dateCreated datePublished" datetime="2021-08-09T13:17:23+08:00">2021-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-08-18 15:22:39" itemprop="dateModified" datetime="2021-08-18T15:22:39+08:00">2021-08-18</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>说在开头, hexo是建站模板,而next是它的一款极致简约风格的黑白theme, 关于hexo和NexT的了解可以登录官网文档查看:</p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
+<h1 id="node-js就绪"><a href="#node-js就绪" class="headerlink" title="node.js就绪"></a>node.js就绪</h1><p>首先下载node.js可以百度, 在此不多赘述</p>
+<h1 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h1><p>使用npm安装hexo-cli</p>
+<p><code>npm install -g hexo-cli</code></p>
+<p>npm是什么, JavaScript的npm, 就是python的pip, 是java的maven</p>
+<h1 id="初始化文件夹"><a href="#初始化文件夹" class="headerlink" title="初始化文件夹"></a>初始化文件夹</h1><p>然后你就可以在全局使用npm命令了, 就像普通的cmd命令一样</p>
+<p>在你喜欢的地方, 新建一个文件夹, 我的叫myblog, 所以将<myblog>替换为你喜欢的名字就好了</p>
+<p>在该文件夹的位置, 输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;myblog&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;myblog&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>最后<myblog>文件夹的结构应该有类似如下的结构</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── <span class="built_in">source</span></span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+
+<p>在<myblog>\themes文件夹git clone hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:theme-next/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
+
+<p>至此, 所有文件准备完毕</p>
+<h1 id="配置文件修改与自定义"><a href="#配置文件修改与自定义" class="headerlink" title="配置文件修改与自定义"></a>配置文件修改与自定义</h1><p><myblog>下的配置文件 _config.yml:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># Site</span></span><br><span class="line">title: Lee&#x27;s Blog</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Jiahui Li</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>这个将会成为你的博客的抬头, 将内容修改成你自己的信息即可</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git </span><br><span class="line">  repo: git@github.com:ikalista/ikalista-ikalista.github.io.git</span><br><span class="line">  branch: main </span><br></pre></td></tr></table></figure>
+
+<p>这个设置为你的github项目地址, 注意main与master</p>
+<p>themes\next下的配置文件 _config.yml:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment"># scheme: Muse</span></span><br><span class="line"><span class="comment"># scheme: Mist</span></span><br><span class="line"><span class="comment"># scheme: Pisces</span></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+
+<p>Gemini是最常见的选择</p>
+<h1 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h1><p>在/<myblog/>下开启git bash, 输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>开启本地服务器, 会自动弹出localhost:4000作为窗口, 方便本地调试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>hexo clean清楚缓存</p>
+<p>hexo g与hexo generate有相同效用, 生成静态网页</p>
+<p>hexo d与hexo depolyment有相同效用, 向网站部署你的网页</p>
+<h1 id="使用一句话发布所有更新的文章"><a href="#使用一句话发布所有更新的文章" class="headerlink" title="使用一句话发布所有更新的文章"></a>使用一句话发布所有更新的文章</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="更多的细节操作"><a href="#更多的细节操作" class="headerlink" title="更多的细节操作"></a>更多的细节操作</h1><p>在调试过程中我发现, 我的内容被Hexo自动生成了目录(table of content), 但是问题随之而来, 目录自动居中了, 这很不好看, 解决方案是</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jiahui Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/09/%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">并发学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-08-09 12:20:56 / Modified: 12:20:43" itemprop="dateCreated datePublished" datetime="2021-08-09T12:20:56+08:00">2021-08-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>第一周，开学啦</h1>
+<p>Sequential program：一个普通的程序</p>
+<p>Concurrent program：同时运行的一组<b>Sequential program</b></p>
+<p>最简单的一个并发例子：</p>
+<p>x = 0</p>
+
+
+<p>Declaring variables <b>volatile</b> prevents such optimisations.</p>
+<p><b>volatile</b>关键字可以避免CPU指令重排序</p>
+https://www.cnblogs.com/dolphin0520/p/3920373.html
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/mininet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jiahui Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/09/mininet/" class="post-title-link" itemprop="url">mininet学习日志</a>
         </h2>
 
         <div class="post-meta">
@@ -204,7 +379,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/2020-8-8-C-Learning/">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/C-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -218,7 +393,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/09/2020-8-8-C-Learning/" class="post-title-link" itemprop="url">开始C语言学习了</a>
+            <a href="/2021/08/09/C-Learning/" class="post-title-link" itemprop="url">开始C语言学习了</a>
         </h2>
 
         <div class="post-meta">
@@ -265,7 +440,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/2020-8-5-openBSD%E5%85%A5%E9%97%A8/">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/openBSD%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -279,7 +454,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/09/2020-8-5-openBSD%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">开始学习操作系统了</a>
+            <a href="/2021/08/09/openBSD%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">开始学习操作系统了</a>
         </h2>
 
         <div class="post-meta">
@@ -354,7 +529,7 @@ sudo apt-get update：  更新apt-get
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/2020-8-4-vim%E5%85%A5%E9%97%A8/">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/vim%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -368,7 +543,7 @@ sudo apt-get update：  更新apt-get
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/09/2020-8-4-vim%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">vim入门</a>
+            <a href="/2021/08/09/vim%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">vim入门</a>
         </h2>
 
         <div class="post-meta">
@@ -414,7 +589,7 @@ sudo apt-get update：  更新apt-get
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/2020-8-1-RNN/">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/RNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -428,7 +603,7 @@ sudo apt-get update：  更新apt-get
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/09/2020-8-1-RNN/" class="post-title-link" itemprop="url">RNN学习</a>
+            <a href="/2021/08/09/RNN/" class="post-title-link" itemprop="url">RNN学习</a>
         </h2>
 
         <div class="post-meta">
@@ -473,7 +648,7 @@ sudo apt-get update：  更新apt-get
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/2020-7-25-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%85%A5%E9%97%A8%E7%90%86%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%85%A5%E9%97%A8%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -487,7 +662,7 @@ sudo apt-get update：  更新apt-get
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/09/2020-7-25-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%85%A5%E9%97%A8%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">神经网络的入门理解</a>
+            <a href="/2021/08/09/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%85%A5%E9%97%A8%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">神经网络的入门理解</a>
         </h2>
 
         <div class="post-meta">
@@ -532,7 +707,7 @@ sudo apt-get update：  更新apt-get
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/2020-7-23-Pytorch-View/">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/09/Pytorch-View/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -546,7 +721,7 @@ sudo apt-get update：  更新apt-get
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/09/2020-7-23-Pytorch-View/" class="post-title-link" itemprop="url">Pytorch View函数的学习日志</a>
+            <a href="/2021/08/09/Pytorch-View/" class="post-title-link" itemprop="url">Pytorch View函数的学习日志</a>
         </h2>
 
         <div class="post-meta">
@@ -656,7 +831,7 @@ sudo apt-get update：  更新apt-get
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
