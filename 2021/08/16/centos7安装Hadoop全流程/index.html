@@ -20,17 +20,19 @@
     var CONFIG = {"hostname":"ikalista.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. 准备与规划hadoop在本地建立集群进行测试1.1. 硬件准备虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试) 1.2. 软件准备下载centos7.iso, 教程自查 使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player (注意是workstation, player版本的多开和">
+  <meta name="description" content="准备与规划硬件准备虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试) 软件准备下载centos7.iso, 教程自查 使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player (注意是workstation, player版本的虚拟机多开和复制会非常的麻烦) 教程自查 主机规划    CDHN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop建立集群">
 <meta property="og:url" content="https://ikalista.github.io/2021/08/16/centos7%E5%AE%89%E8%A3%85Hadoop%E5%85%A8%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Lee&#39;s Blog">
-<meta property="og:description" content="1. 准备与规划hadoop在本地建立集群进行测试1.1. 硬件准备虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试) 1.2. 软件准备下载centos7.iso, 教程自查 使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player (注意是workstation, player版本的多开和">
+<meta property="og:description" content="准备与规划硬件准备虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试) 软件准备下载centos7.iso, 教程自查 使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player (注意是workstation, player版本的虚拟机多开和复制会非常的麻烦) 教程自查 主机规划    CDHN">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/Jiahui/AppData/Roaming/Typora/typora-user-images/image-20210826152543918.png">
 <meta property="article:published_time" content="2021-08-16T06:12:08.603Z">
-<meta property="article:modified_time" content="2021-08-23T05:46:46.632Z">
+<meta property="article:modified_time" content="2021-08-26T09:17:49.940Z">
 <meta property="article:author" content="Jiahui Li">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/Jiahui/AppData/Roaming/Typora/typora-user-images/image-20210826152543918.png">
 
 <link rel="canonical" href="https://ikalista.github.io/2021/08/16/centos7%E5%AE%89%E8%A3%85Hadoop%E5%85%A8%E6%B5%81%E7%A8%8B/">
 
@@ -180,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-08-23 13:46:46" itemprop="dateModified" datetime="2021-08-23T13:46:46+08:00">2021-08-23</time>
+                <time title="Modified: 2021-08-26 17:17:49" itemprop="dateModified" datetime="2021-08-26T17:17:49+08:00">2021-08-26</time>
               </span>
 
           
@@ -194,10 +196,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-准备与规划"><a href="#1-准备与规划" class="headerlink" title="1. 准备与规划"></a>1. 准备与规划</h1><h1 id="hadoop在本地建立集群进行测试"><a href="#hadoop在本地建立集群进行测试" class="headerlink" title="hadoop在本地建立集群进行测试"></a>hadoop在本地建立集群进行测试</h1><h2 id="1-1-硬件准备"><a href="#1-1-硬件准备" class="headerlink" title="1.1. 硬件准备"></a>1.1. 硬件准备</h2><p>虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试)</p>
-<h2 id="1-2-软件准备"><a href="#1-2-软件准备" class="headerlink" title="1.2. 软件准备"></a>1.2. 软件准备</h2><p>下载centos7.iso, 教程自查</p>
-<p>使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player (注意是workstation, player版本的多开和复制会非常的麻烦) 教程自查</p>
-<h2 id="1-3-主机规划"><a href="#1-3-主机规划" class="headerlink" title="1.3. 主机规划"></a>1.3. 主机规划</h2><table>
+        <h1 id="准备与规划"><a href="#准备与规划" class="headerlink" title="准备与规划"></a>准备与规划</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><p>虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试)</p>
+<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><p>下载centos7.iso, 教程自查</p>
+<p>使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player <strong>(注意是workstation, player版本的虚拟机多开和复制会非常的麻烦)</strong> 教程自查</p>
+<h2 id="主机规划"><a href="#主机规划" class="headerlink" title="主机规划"></a>主机规划</h2><table>
 <thead>
 <tr>
 <th></th>
@@ -238,12 +240,12 @@
 </tr>
 </tbody></table>
 <p>注意：Journalnode和ZooKeeper保持奇数个，最少不少于 3 个节点。</p>
-<h2 id="1-4-脚本工具"><a href="#1-4-脚本工具" class="headerlink" title="1.4. 脚本工具"></a>1.4. 脚本工具</h2><h1 id="2-网络配置"><a href="#2-网络配置" class="headerlink" title="2. 网络配置"></a>2. 网络配置</h1><h2 id="2-1-配置虚拟机网络"><a href="#2-1-配置虚拟机网络" class="headerlink" title="2.1. 配置虚拟机网络"></a>2.1. 配置虚拟机网络</h2><ul>
+<h2 id="脚本工具"><a href="#脚本工具" class="headerlink" title="脚本工具"></a>脚本工具</h2><h1 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h1><h2 id="配置虚拟机网络"><a href="#配置虚拟机网络" class="headerlink" title="配置虚拟机网络"></a>配置虚拟机网络</h2><ul>
 <li>建议使用静态路由(步骤不赘述, 我使用了第二种方法)</li>
 <li>(可行, 不推荐) 在使用dhcp(动态路由协议)的情况下, 虚拟机会被自动分配到ip地址, 但是虚拟机网络中网络结构非常固定, 所以动态分布的ip地址其实约等于固定地址, 可以使用ifconfig将ip记录下来</li>
 </ul>
-<h2 id="2-2-使用Xshell登录虚拟机"><a href="#2-2-使用Xshell登录虚拟机" class="headerlink" title="2.2. 使用Xshell登录虚拟机"></a>2.2. 使用Xshell登录虚拟机</h2><p>不赘述</p>
-<h1 id="3-环境配置"><a href="#3-环境配置" class="headerlink" title="3. 环境配置"></a>3. 环境配置</h1><h2 id="３-１-环境配置"><a href="#３-１-环境配置" class="headerlink" title="３.１. 环境配置"></a>３.１. 环境配置</h2><p>安装lrzsz, 是的 lr sz命令分别可以与windows进行文件上传和下载的交互,</p>
+<h2 id="使用Xshell登录虚拟机"><a href="#使用Xshell登录虚拟机" class="headerlink" title="使用Xshell登录虚拟机"></a>使用Xshell登录虚拟机</h2><p>不赘述</p>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="环境配置-1"><a href="#环境配置-1" class="headerlink" title="环境配置"></a>环境配置</h2><p>安装lrzsz, 是的 lr sz命令分别可以与windows进行文件上传和下载的交互,</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install lrzsz</span><br></pre></td></tr></table></figure>
 
 <p>安装ssh</p>
@@ -251,6 +253,67 @@
 
 
 
+<h1 id="问题-大坑"><a href="#问题-大坑" class="headerlink" title="问题(大坑)"></a>问题(大坑)</h1><ul>
+<li>关防火墙!!!!!!</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.net.NoRouteToHostException: 没有到主机的路由 (Host unreachable)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop firewalld <span class="comment">#临时关闭</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld <span class="comment">#然后reboot 永久关闭</span></span><br><span class="line">vo <span class="comment">#查看防火墙状态。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>ssh互信!!!!</li>
+</ul>
+<p>一定要在hadoop用户下进行操作</p>
+<p>软件解压最好在hadoop的/home下, 避免权限问题</p>
+<p>java报错端口占用 kill -15 该进程即可</p>
+<ul>
+<li>一次失败的实验</li>
+</ul>
+<p>node1和node2的namenode都起起来了, </p>
+<p>一次实验, node 2的namenode 使用kill -15强制下线, zkfailover controller本应该将node1激活, 但是强制下线使得editlog不一致了(journal node发现的不一致), 使得node1的namenode激活失败, 直接下线了.</p>
+<p>这时需要</p>
+<p>nn和standby nn的editlog(磁盘文件)不一致</p>
+<p>执行：hdfs namenode -bootstrapStandby</p>
+<p>使得两台机器的editllog一致, 然后再将集群关闭, 再使用 </p>
+<ul>
+<li>常用命令</li>
+</ul>
+<p>zookeeper查找当前节点状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh status</span><br></pre></td></tr></table></figure>
+
+
+
+<p>以下命令都是在 <strong>/home/hadoop/app/hadoop-2.6.0-cdh5.4.5/etc/hadoop</strong> 路径下的</p>
+<p>看CDHNode1节点的状态, [standby, active]</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs haadmin -getServiceState CDHNode1</span><br></pre></td></tr></table></figure>
+
+<p>启动单个节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop-daemon.sh start namenode</span><br></pre></td></tr></table></figure>
+
+<p>启动集群的所有节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-dfs.sh</span><br></pre></td></tr></table></figure>
+
+<p>如果要测试高可用, 应该使用温柔的方式关闭节点, 才能展示zkfailover controller如何将另一个节点激活, 并再将stopped的节点重新启动后, 成为standby状态(这里也有journal node的检测程序, 检测不一致就会启动失败)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop-daemon.sh stop namenode</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark-shell</span><br></pre></td></tr></table></figure>
+
+<p>遇到问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.sql.SQLException: Failed to create database <span class="string">&#x27;metastore_db&#x27;</span>, see the next exception <span class="keyword">for</span> details.</span><br></pre></td></tr></table></figure>
+
+<p>是因为spark文件夹没有权限写入, 为了学习方便可以用root权限把该文件夹的权限全部打开</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 /home/hadoop/app/spark-2.1.1-bin-hadoop2.6/</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="scp命令"><a href="#scp命令" class="headerlink" title="scp命令"></a>scp命令</h1><p><img src="C:\Users\Jiahui\AppData\Roaming\Typora\typora-user-images\image-20210826152543918.png" alt="image-20210826152543918"></p>
 
     </div>
 
@@ -266,12 +329,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/13/okr%E5%AD%A6%E4%B9%A0/" rel="prev" title="dimp okr 目标关键结果模块">
-      <i class="fa fa-chevron-left"></i> dimp okr 目标关键结果模块
+    <a href="/2021/08/09/hexo+next%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/" rel="prev" title="一次hexo+next的建站记录">
+      <i class="fa fa-chevron-left"></i> 一次hexo+next的建站记录
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/08/18/1%E7%A9%BAmarkdown%E6%96%87%E4%BB%B6/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/2021/08/18/markdown%E5%AD%A6%E4%B9%A0/" rel="next" title="markdown备忘录">
+      markdown备忘录 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -331,7 +394,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%87%86%E5%A4%87%E4%B8%8E%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">1. 准备与规划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hadoop%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%BB%BA%E7%AB%8B%E9%9B%86%E7%BE%A4%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">hadoop在本地建立集群进行测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">2.1.</span> <span class="nav-text">1.1. 硬件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">2.2.</span> <span class="nav-text">1.2. 软件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92"><span class="nav-number">2.3.</span> <span class="nav-text">1.3. 主机规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E8%84%9A%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="nav-number">2.4.</span> <span class="nav-text">1.4. 脚本工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">2. 网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">3.1.</span> <span class="nav-text">2.1. 配置虚拟机网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E4%BD%BF%E7%94%A8Xshell%E7%99%BB%E5%BD%95%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">3.2.</span> <span class="nav-text">2.2. 使用Xshell登录虚拟机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">3. 环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%93-%EF%BC%91-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">３.１. 环境配置</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E4%B8%8E%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">准备与规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">1.1.</span> <span class="nav-text">硬件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">1.2.</span> <span class="nav-text">软件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92"><span class="nav-number">1.3.</span> <span class="nav-text">主机规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="nav-number">1.4.</span> <span class="nav-text">脚本工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">2.1.</span> <span class="nav-text">配置虚拟机网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Xshell%E7%99%BB%E5%BD%95%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">使用Xshell登录虚拟机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-1"><span class="nav-number">3.1.</span> <span class="nav-text">环境配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-%E5%A4%A7%E5%9D%91"><span class="nav-number">4.</span> <span class="nav-text">问题(大坑)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scp%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">scp命令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -345,7 +408,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
