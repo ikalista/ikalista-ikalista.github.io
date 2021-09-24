@@ -210,77 +210,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/28/springboot%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jiahui Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lee's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/28/springboot%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">SpringBoot学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-08-28 21:52:58" itemprop="dateCreated datePublished" datetime="2021-08-28T21:52:58+08:00">2021-08-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-08-18 15:07:12" itemprop="dateModified" datetime="2021-08-18T15:07:12+08:00">2021-08-18</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>注解:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br></pre></td></tr></table></figure>
-
-<p>SpringBoot的主程序</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ComponentScan</span></span><br></pre></td></tr></table></figure>
-
-<p>创建一个配置类，在配置类上添加 @ComponentScan 注解。该注解默认会扫描该类所在的包下所有的配置类，相当于之前的 &lt;context:component-scan&gt;</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/27/infs7410/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -312,7 +241,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-05 17:46:08" itemprop="dateModified" datetime="2021-09-05T17:46:08+08:00">2021-09-05</time>
+                <time title="Modified: 2021-09-05 18:01:37" itemprop="dateModified" datetime="2021-09-05T18:01:37+08:00">2021-09-05</time>
               </span>
 
           
@@ -575,7 +504,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-02 17:01:04" itemprop="dateModified" datetime="2021-09-02T17:01:04+08:00">2021-09-02</time>
+                <time title="Modified: 2021-09-06 16:13:49" itemprop="dateModified" datetime="2021-09-06T16:13:49+08:00">2021-09-06</time>
               </span>
 
           
@@ -589,9 +518,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="准备与规划"><a href="#准备与规划" class="headerlink" title="准备与规划"></a>准备与规划</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><p>虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试)</p>
+          <h1 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h1><p>本文参考</p>
+<p>史涛老师的hadoop搭建文件</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/31dd88692c7e">https://www.jianshu.com/p/31dd88692c7e</a></p>
+<h1 id="Hadoop是什么？"><a href="#Hadoop是什么？" class="headerlink" title="Hadoop是什么？"></a>Hadoop是什么？</h1><p><strong>从狭义来说</strong>，Hadoop指的是Apache下的一款开源框架，目前常用的是Hadoop2版本。</p>
+<p>Hadoop2主要包含以下3个组件：</p>
+<ul>
+<li>HDFS：一个Hadoop的分布式文件系统，支持NameNode横向扩展，解决海量数据的存储。</li>
+<li>YARN：一个负责作业调度和集群资源管理的框架，解决资源任务调度。</li>
+<li>MapReduce：一个分布式运算编程框架，运行在YARN上，用来解决海量数据的计算。 </li>
+</ul>
+<p>与Hadoop2与Hadoop1区别在于1把资源管理和海量数据计算的任务都丢给MapReduce，即Hadoop1只由一个HDFS和MapReduce组成</p>
+<p><strong>从广义来说</strong>，Hadoop类似于Spring，已经形成了一个Hadoop生态圈，许多技术都和Hadoop进行集成使用起来, 包括之后可能用到的spark, hive都是基于hadoop分布式集群(或者说hdfs集群)才能运作</p>
+<p><strong>总结</strong>：Hadoop的应用场景并不会跟某些行业或某些业务挂钩在一起，它只是一款海量数据分析处理的软件平台，提供HDFS、MapReduce、YARN这些模块来对外提供帮助。</p>
+<h1 id="准备与规划"><a href="#准备与规划" class="headerlink" title="准备与规划"></a>准备与规划</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><p>虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试)</p>
 <h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><p>下载centos7.iso, 教程自查</p>
-<p>使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player <strong>(注意是workstation, player版本的虚拟机多开和复制会非常的麻烦)</strong> 教程自查</p>
+<p>使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player , <strong>注意是workstation, player版本的虚拟机多开和复制会非常的麻烦, 而虚拟机复制将是你之后配置多台虚拟机最简单的方式, 你只需要复制一台配置完毕的虚拟机即可</strong>, 教程自查</p>
 <h2 id="主机规划"><a href="#主机规划" class="headerlink" title="主机规划"></a>主机规划</h2><table>
 <thead>
 <tr>
@@ -632,10 +574,15 @@
 <td align="center">是</td>
 </tr>
 </tbody></table>
-<p>注意：Journalnode和ZooKeeper保持奇数个，最少不少于 3 个节点。</p>
-<h2 id="脚本工具"><a href="#脚本工具" class="headerlink" title="脚本工具"></a>脚本工具</h2><h1 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h1><h2 id="配置虚拟机网络"><a href="#配置虚拟机网络" class="headerlink" title="配置虚拟机网络"></a>配置虚拟机网络</h2><ul>
+<p>注意：</p>
+<p>NameNode: 指挥节点, 通常所在机器需要很大的内存, 而不需要很大的硬盘</p>
+<p>Datanode: 存储数据的节点, 可以有任意个, 硬盘要求比内存高</p>
+<p>Journalnode: 日志节点, 同步集群的状态, 奇数个，大于等于 3 个节点</p>
+<p>ZooKeeper: 如其名, 维护集群的状态, 奇数个，大于等于3 个节点</p>
+<p>备注: 需要三个节点是因为需要选举, 而偶数选举会出现平票的情况, 无法选出coordinator.</p>
+<h1 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h1><h2 id="配置虚拟机网络"><a href="#配置虚拟机网络" class="headerlink" title="配置虚拟机网络"></a>配置虚拟机网络</h2><ul>
 <li>建议使用静态路由(步骤不赘述, 我使用了第二种方法)</li>
-<li>(可行, 不推荐) 在使用dhcp(动态路由协议)的情况下, 虚拟机会被自动分配到ip地址, 但是虚拟机网络中网络结构非常固定, 所以动态分布的ip地址其实约等于固定地址, 可以使用ifconfig将ip记录下来</li>
+<li>(可行, 不推荐) 在使用dhcp(动态路由协议)的情况下, 虚拟机会被自动分配到固定的ip地址, 因为虚拟机网络中网络结构非常固定, 所以动态分布的ip地址其实约等于固定地址, 可以使用ifconfig命令查看ip, 并将ip记录下来</li>
 </ul>
 <h2 id="使用Xshell登录虚拟机"><a href="#使用Xshell登录虚拟机" class="headerlink" title="使用Xshell登录虚拟机"></a>使用Xshell登录虚拟机</h2><p>不赘述</p>
 <h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="环境配置-1"><a href="#环境配置-1" class="headerlink" title="环境配置"></a>环境配置</h2><p>安装lrzsz, 是的 lr sz命令分别可以与windows进行文件上传和下载的交互,</p>
@@ -644,8 +591,26 @@
 <p>安装ssh</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-server</span><br><span class="line">yum install openssh-clients</span><br></pre></td></tr></table></figure>
 
+<h2 id="配置hosts"><a href="#配置hosts" class="headerlink" title="配置hosts"></a>配置hosts</h2><p>修改<code>/etc/hosts</code>文件, 配置所有节点的地址和域名解析，使集群节点间能快速访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hosts</span><br></pre></td></tr></table></figure>
 
 
+
+<p>举例, 如图中所示, 配置ip的步骤中的各节点的ip地址与节点名字</p>
+<p><img src="C:\Users\Jiahui\AppData\Roaming\Typora\typora-user-images\image-20210906160409922.png"></p>
+<h2 id="创建普通用户"><a href="#创建普通用户" class="headerlink" title="创建普通用户"></a>创建普通用户</h2><p>为了减少误操作对系统的损害，出于安全性考虑需要创建普通用户。</p>
+<ul>
+<li><p>创建hadoop用户，并为hadoop用户创建密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@CDHNode1 ~]<span class="comment"># adduser -m hadoop</span></span><br><span class="line">[root@CDHNode1 ~]<span class="comment"># passwd hadoop</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="给hadoop用户提供root权限"><a href="#给hadoop用户提供root权限" class="headerlink" title="给hadoop用户提供root权限"></a>给hadoop用户提供root权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CDHNode1 ~]<span class="comment"># #vi /etc/sudoers</span></span><br></pre></td></tr></table></figure>
+
+<p>在hadoop用户的权限修改为</p>
+<p>root ALL=(ALL) ALL</p>
+<p>这句话的ALL的意思:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root ALL=(ALL) ALL</span><br><span class="line"></span><br><span class="line">The root ALL is the users allowed</span><br><span class="line">The second one is the hosts</span><br><span class="line">The third one is the user as you are running the <span class="built_in">command</span></span><br><span class="line">The last one is the commands allowed</span><br></pre></td></tr></table></figure>
+
+<p>你可以给更限制的权限, 但是我们在虚拟机上不需要考虑, 只需要考虑最没有限制的访问即可</p>
 <h1 id="问题-大坑"><a href="#问题-大坑" class="headerlink" title="问题(大坑)"></a>问题(大坑)</h1><h4 id="关防火墙"><a href="#关防火墙" class="headerlink" title="关防火墙!!!!!!"></a>关防火墙!!!!!!</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.net.NoRouteToHostException: 没有到主机的路由 (Host unreachable)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop firewalld <span class="comment">#临时关闭</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld <span class="comment">#然后reboot 永久关闭</span></span><br><span class="line">vo <span class="comment">#查看防火墙状态。</span></span><br></pre></td></tr></table></figure>
@@ -896,7 +861,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

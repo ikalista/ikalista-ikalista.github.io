@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"ikalista.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="准备与规划硬件准备虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试) 软件准备下载centos7.iso, 教程自查 使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player (注意是workstation, player版本的虚拟机多开和复制会非常的麻烦) 教程自查 主机规划    CDHN">
+  <meta name="description" content="写在前头本文参考 史涛老师的hadoop搭建文件 https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;31dd88692c7e Hadoop是什么？从狭义来说，Hadoop指的是Apache下的一款开源框架，目前常用的是Hadoop2版本。 Hadoop2主要包含以下3个组件：  HDFS：一个Hadoop的分布式文件系统，支持NameNode横向扩展，解决海量数据的存储。 YARN：一个负责作业">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop建立集群">
 <meta property="og:url" content="https://ikalista.github.io/2021/08/16/centos7%E5%AE%89%E8%A3%85Hadoop%E5%85%A8%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Lee&#39;s Blog">
-<meta property="og:description" content="准备与规划硬件准备虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试) 软件准备下载centos7.iso, 教程自查 使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player (注意是workstation, player版本的虚拟机多开和复制会非常的麻烦) 教程自查 主机规划    CDHN">
+<meta property="og:description" content="写在前头本文参考 史涛老师的hadoop搭建文件 https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;31dd88692c7e Hadoop是什么？从狭义来说，Hadoop指的是Apache下的一款开源框架，目前常用的是Hadoop2版本。 Hadoop2主要包含以下3个组件：  HDFS：一个Hadoop的分布式文件系统，支持NameNode横向扩展，解决海量数据的存储。 YARN：一个负责作业">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/Jiahui/AppData/Roaming/Typora/typora-user-images/image-20210906160409922.png">
 <meta property="og:image" content="c:/Users/Jiahui/AppData/Roaming/Typora/typora-user-images/image-20210826152543918.png">
 <meta property="article:published_time" content="2021-08-16T06:12:08.603Z">
-<meta property="article:modified_time" content="2021-09-02T09:01:04.558Z">
+<meta property="article:modified_time" content="2021-09-06T08:13:49.222Z">
 <meta property="article:author" content="Jiahui Li">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:/Users/Jiahui/AppData/Roaming/Typora/typora-user-images/image-20210826152543918.png">
+<meta name="twitter:image" content="c:/Users/Jiahui/AppData/Roaming/Typora/typora-user-images/image-20210906160409922.png">
 
 <link rel="canonical" href="https://ikalista.github.io/2021/08/16/centos7%E5%AE%89%E8%A3%85Hadoop%E5%85%A8%E6%B5%81%E7%A8%8B/">
 
@@ -182,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-02 17:01:04" itemprop="dateModified" datetime="2021-09-02T17:01:04+08:00">2021-09-02</time>
+                <time title="Modified: 2021-09-06 16:13:49" itemprop="dateModified" datetime="2021-09-06T16:13:49+08:00">2021-09-06</time>
               </span>
 
           
@@ -196,9 +197,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="准备与规划"><a href="#准备与规划" class="headerlink" title="准备与规划"></a>准备与规划</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><p>虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试)</p>
+        <h1 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h1><p>本文参考</p>
+<p>史涛老师的hadoop搭建文件</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/31dd88692c7e">https://www.jianshu.com/p/31dd88692c7e</a></p>
+<h1 id="Hadoop是什么？"><a href="#Hadoop是什么？" class="headerlink" title="Hadoop是什么？"></a>Hadoop是什么？</h1><p><strong>从狭义来说</strong>，Hadoop指的是Apache下的一款开源框架，目前常用的是Hadoop2版本。</p>
+<p>Hadoop2主要包含以下3个组件：</p>
+<ul>
+<li>HDFS：一个Hadoop的分布式文件系统，支持NameNode横向扩展，解决海量数据的存储。</li>
+<li>YARN：一个负责作业调度和集群资源管理的框架，解决资源任务调度。</li>
+<li>MapReduce：一个分布式运算编程框架，运行在YARN上，用来解决海量数据的计算。 </li>
+</ul>
+<p>与Hadoop2与Hadoop1区别在于1把资源管理和海量数据计算的任务都丢给MapReduce，即Hadoop1只由一个HDFS和MapReduce组成</p>
+<p><strong>从广义来说</strong>，Hadoop类似于Spring，已经形成了一个Hadoop生态圈，许多技术都和Hadoop进行集成使用起来, 包括之后可能用到的spark, hive都是基于hadoop分布式集群(或者说hdfs集群)才能运作</p>
+<p><strong>总结</strong>：Hadoop的应用场景并不会跟某些行业或某些业务挂钩在一起，它只是一款海量数据分析处理的软件平台，提供HDFS、MapReduce、YARN这些模块来对外提供帮助。</p>
+<h1 id="准备与规划"><a href="#准备与规划" class="headerlink" title="准备与规划"></a>准备与规划</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><p>虚拟机8G+内存, 50G+硬盘, CPU给到4个,  网络设置为host共享(只在本地建立集群进行测试)</p>
 <h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><p>下载centos7.iso, 教程自查</p>
-<p>使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player <strong>(注意是workstation, player版本的虚拟机多开和复制会非常的麻烦)</strong> 教程自查</p>
+<p>使用上一步下载下来的centos7.iso, 安装VMware Workstation 16 Player , <strong>注意是workstation, player版本的虚拟机多开和复制会非常的麻烦, 而虚拟机复制将是你之后配置多台虚拟机最简单的方式, 你只需要复制一台配置完毕的虚拟机即可</strong>, 教程自查</p>
 <h2 id="主机规划"><a href="#主机规划" class="headerlink" title="主机规划"></a>主机规划</h2><table>
 <thead>
 <tr>
@@ -239,10 +253,15 @@
 <td align="center">是</td>
 </tr>
 </tbody></table>
-<p>注意：Journalnode和ZooKeeper保持奇数个，最少不少于 3 个节点。</p>
-<h2 id="脚本工具"><a href="#脚本工具" class="headerlink" title="脚本工具"></a>脚本工具</h2><h1 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h1><h2 id="配置虚拟机网络"><a href="#配置虚拟机网络" class="headerlink" title="配置虚拟机网络"></a>配置虚拟机网络</h2><ul>
+<p>注意：</p>
+<p>NameNode: 指挥节点, 通常所在机器需要很大的内存, 而不需要很大的硬盘</p>
+<p>Datanode: 存储数据的节点, 可以有任意个, 硬盘要求比内存高</p>
+<p>Journalnode: 日志节点, 同步集群的状态, 奇数个，大于等于 3 个节点</p>
+<p>ZooKeeper: 如其名, 维护集群的状态, 奇数个，大于等于3 个节点</p>
+<p>备注: 需要三个节点是因为需要选举, 而偶数选举会出现平票的情况, 无法选出coordinator.</p>
+<h1 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h1><h2 id="配置虚拟机网络"><a href="#配置虚拟机网络" class="headerlink" title="配置虚拟机网络"></a>配置虚拟机网络</h2><ul>
 <li>建议使用静态路由(步骤不赘述, 我使用了第二种方法)</li>
-<li>(可行, 不推荐) 在使用dhcp(动态路由协议)的情况下, 虚拟机会被自动分配到ip地址, 但是虚拟机网络中网络结构非常固定, 所以动态分布的ip地址其实约等于固定地址, 可以使用ifconfig将ip记录下来</li>
+<li>(可行, 不推荐) 在使用dhcp(动态路由协议)的情况下, 虚拟机会被自动分配到固定的ip地址, 因为虚拟机网络中网络结构非常固定, 所以动态分布的ip地址其实约等于固定地址, 可以使用ifconfig命令查看ip, 并将ip记录下来</li>
 </ul>
 <h2 id="使用Xshell登录虚拟机"><a href="#使用Xshell登录虚拟机" class="headerlink" title="使用Xshell登录虚拟机"></a>使用Xshell登录虚拟机</h2><p>不赘述</p>
 <h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="环境配置-1"><a href="#环境配置-1" class="headerlink" title="环境配置"></a>环境配置</h2><p>安装lrzsz, 是的 lr sz命令分别可以与windows进行文件上传和下载的交互,</p>
@@ -251,8 +270,26 @@
 <p>安装ssh</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-server</span><br><span class="line">yum install openssh-clients</span><br></pre></td></tr></table></figure>
 
+<h2 id="配置hosts"><a href="#配置hosts" class="headerlink" title="配置hosts"></a>配置hosts</h2><p>修改<code>/etc/hosts</code>文件, 配置所有节点的地址和域名解析，使集群节点间能快速访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hosts</span><br></pre></td></tr></table></figure>
 
 
+
+<p>举例, 如图中所示, 配置ip的步骤中的各节点的ip地址与节点名字</p>
+<p><img src="C:\Users\Jiahui\AppData\Roaming\Typora\typora-user-images\image-20210906160409922.png"></p>
+<h2 id="创建普通用户"><a href="#创建普通用户" class="headerlink" title="创建普通用户"></a>创建普通用户</h2><p>为了减少误操作对系统的损害，出于安全性考虑需要创建普通用户。</p>
+<ul>
+<li><p>创建hadoop用户，并为hadoop用户创建密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@CDHNode1 ~]<span class="comment"># adduser -m hadoop</span></span><br><span class="line">[root@CDHNode1 ~]<span class="comment"># passwd hadoop</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="给hadoop用户提供root权限"><a href="#给hadoop用户提供root权限" class="headerlink" title="给hadoop用户提供root权限"></a>给hadoop用户提供root权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@CDHNode1 ~]<span class="comment"># #vi /etc/sudoers</span></span><br></pre></td></tr></table></figure>
+
+<p>在hadoop用户的权限修改为</p>
+<p>root ALL=(ALL) ALL</p>
+<p>这句话的ALL的意思:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root ALL=(ALL) ALL</span><br><span class="line"></span><br><span class="line">The root ALL is the users allowed</span><br><span class="line">The second one is the hosts</span><br><span class="line">The third one is the user as you are running the <span class="built_in">command</span></span><br><span class="line">The last one is the commands allowed</span><br></pre></td></tr></table></figure>
+
+<p>你可以给更限制的权限, 但是我们在虚拟机上不需要考虑, 只需要考虑最没有限制的访问即可</p>
 <h1 id="问题-大坑"><a href="#问题-大坑" class="headerlink" title="问题(大坑)"></a>问题(大坑)</h1><h4 id="关防火墙"><a href="#关防火墙" class="headerlink" title="关防火墙!!!!!!"></a>关防火墙!!!!!!</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.net.NoRouteToHostException: 没有到主机的路由 (Host unreachable)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop firewalld <span class="comment">#临时关闭</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> firewalld <span class="comment">#然后reboot 永久关闭</span></span><br><span class="line">vo <span class="comment">#查看防火墙状态。</span></span><br></pre></td></tr></table></figure>
@@ -392,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E4%B8%8E%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">准备与规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">1.1.</span> <span class="nav-text">硬件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">1.2.</span> <span class="nav-text">软件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92"><span class="nav-number">1.3.</span> <span class="nav-text">主机规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="nav-number">1.4.</span> <span class="nav-text">脚本工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">2.1.</span> <span class="nav-text">配置虚拟机网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Xshell%E7%99%BB%E5%BD%95%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">使用Xshell登录虚拟机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-1"><span class="nav-number">3.1.</span> <span class="nav-text">环境配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-%E5%A4%A7%E5%9D%91"><span class="nav-number">4.</span> <span class="nav-text">问题(大坑)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">关防火墙!!!!!!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh%E4%BA%92%E4%BF%A1"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">ssh互信!!!!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E7%9A%84%E5%AE%9E%E9%AA%8C"><span class="nav-number">4.0.0.3.</span> <span class="nav-text">一次失败的实验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.0.0.4.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E5%90%AF%E5%8A%A8-%E5%81%9C%E6%AD%A2HDFS"><span class="nav-number">4.0.0.5.</span> <span class="nav-text">整体启动&#x2F;停止HDFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E5%90%AF%E5%8A%A8-%E5%81%9C%E6%AD%A2YARN"><span class="nav-number">4.0.0.6.</span> <span class="nav-text">整体启动&#x2F;停止YARN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HDFS%E3%80%81YARN%E5%90%8C%E6%97%B6%E5%90%AF%E5%8A%A8%E3%80%81%E5%81%9C%E6%AD%A2"><span class="nav-number">4.0.0.7.</span> <span class="nav-text">HDFS、YARN同时启动、停止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E8%A6%81%E6%B5%8B%E8%AF%95%E9%AB%98%E5%8F%AF%E7%94%A8-%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E6%B8%A9%E6%9F%94%E7%9A%84%E6%96%B9%E5%BC%8F%E5%85%B3%E9%97%AD%E8%8A%82%E7%82%B9-%E6%89%8D%E8%83%BD%E5%B1%95%E7%A4%BAzkfailover-controller%E5%A6%82%E4%BD%95%E5%B0%86%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E6%BF%80%E6%B4%BB-%E5%B9%B6%E5%86%8D%E5%B0%86stopped%E7%9A%84%E8%8A%82%E7%82%B9%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8%E5%90%8E-%E6%88%90%E4%B8%BAstandby%E7%8A%B6%E6%80%81-%E8%BF%99%E9%87%8C%E4%B9%9F%E6%9C%89journal-node%E7%9A%84%E6%A3%80%E6%B5%8B%E7%A8%8B%E5%BA%8F-%E6%A3%80%E6%B5%8B%E4%B8%8D%E4%B8%80%E8%87%B4%E5%B0%B1%E4%BC%9A%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5"><span class="nav-number">4.0.0.8.</span> <span class="nav-text">如果要测试高可用, 应该使用温柔的方式关闭节点, 才能展示zkfailover controller如何将另一个节点激活, 并再将stopped的节点重新启动后, 成为standby状态(这里也有journal node的检测程序, 检测不一致就会启动失败)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hadoop-%E7%9B%AE%E5%BD%95%E5%92%8C-hadoop-app%E7%9B%AE%E5%BD%95%E4%B8%8B%E9%83%BD%E6%9C%89-metastore-db%E8%BF%99%E4%B8%AA%E7%9B%AE%E5%BD%95-%E8%BF%99%E4%BC%9A%E5%AF%BC%E8%87%B4%E4%B8%80%E4%BA%9Bspark%E5%90%AF%E5%8A%A8%E6%89%BE%E4%B8%8D%E5%88%B0metastore-db%E7%9A%84%E9%94%99%E8%AF%AF-%E6%88%91%E4%BD%BF%E7%94%A8%E4%B8%8B%E9%9D%A2%E7%9A%84%E8%AF%AD%E5%8F%A5%E8%A6%86%E7%9B%96%E4%BA%86app%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%9D%83%E9%99%90%E5%B1%9E%E4%BA%8Eroot%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9-%E8%A7%A3%E5%86%B3%E4%BA%86%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98-%E4%BD%86%E6%98%AF%E5%8E%9F%E5%9B%A0%E6%9A%82%E6%97%B6%E4%B8%8D%E6%98%8E"><span class="nav-number">4.0.0.9.</span> <span class="nav-text">hadoop 目录和 hadoop&#x2F;app目录下都有 metastore_db这个目录, 这会导致一些spark启动找不到metastore_db的错误, 我使用下面的语句覆盖了app目录下权限属于root的文件夹, 解决了这个问题, 但是原因暂时不明</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scp%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">scp命令</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E5%A4%B4"><span class="nav-number">1.</span> <span class="nav-text">写在前头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hadoop%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">Hadoop是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E4%B8%8E%E8%A7%84%E5%88%92"><span class="nav-number">3.</span> <span class="nav-text">准备与规划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">3.1.</span> <span class="nav-text">硬件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%87%86%E5%A4%87"><span class="nav-number">3.2.</span> <span class="nav-text">软件准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92"><span class="nav-number">3.3.</span> <span class="nav-text">主机规划</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">4.1.</span> <span class="nav-text">配置虚拟机网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Xshell%E7%99%BB%E5%BD%95%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">4.2.</span> <span class="nav-text">使用Xshell登录虚拟机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-1"><span class="nav-number">5.1.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEhosts"><span class="nav-number">5.2.</span> <span class="nav-text">配置hosts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7"><span class="nav-number">5.3.</span> <span class="nav-text">创建普通用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99hadoop%E7%94%A8%E6%88%B7%E6%8F%90%E4%BE%9Broot%E6%9D%83%E9%99%90"><span class="nav-number">5.4.</span> <span class="nav-text">给hadoop用户提供root权限</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98-%E5%A4%A7%E5%9D%91"><span class="nav-number">6.</span> <span class="nav-text">问题(大坑)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">关防火墙!!!!!!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh%E4%BA%92%E4%BF%A1"><span class="nav-number">6.0.0.2.</span> <span class="nav-text">ssh互信!!!!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E7%9A%84%E5%AE%9E%E9%AA%8C"><span class="nav-number">6.0.0.3.</span> <span class="nav-text">一次失败的实验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">6.0.0.4.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E5%90%AF%E5%8A%A8-%E5%81%9C%E6%AD%A2HDFS"><span class="nav-number">6.0.0.5.</span> <span class="nav-text">整体启动&#x2F;停止HDFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E5%90%AF%E5%8A%A8-%E5%81%9C%E6%AD%A2YARN"><span class="nav-number">6.0.0.6.</span> <span class="nav-text">整体启动&#x2F;停止YARN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HDFS%E3%80%81YARN%E5%90%8C%E6%97%B6%E5%90%AF%E5%8A%A8%E3%80%81%E5%81%9C%E6%AD%A2"><span class="nav-number">6.0.0.7.</span> <span class="nav-text">HDFS、YARN同时启动、停止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E8%A6%81%E6%B5%8B%E8%AF%95%E9%AB%98%E5%8F%AF%E7%94%A8-%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E6%B8%A9%E6%9F%94%E7%9A%84%E6%96%B9%E5%BC%8F%E5%85%B3%E9%97%AD%E8%8A%82%E7%82%B9-%E6%89%8D%E8%83%BD%E5%B1%95%E7%A4%BAzkfailover-controller%E5%A6%82%E4%BD%95%E5%B0%86%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E6%BF%80%E6%B4%BB-%E5%B9%B6%E5%86%8D%E5%B0%86stopped%E7%9A%84%E8%8A%82%E7%82%B9%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8%E5%90%8E-%E6%88%90%E4%B8%BAstandby%E7%8A%B6%E6%80%81-%E8%BF%99%E9%87%8C%E4%B9%9F%E6%9C%89journal-node%E7%9A%84%E6%A3%80%E6%B5%8B%E7%A8%8B%E5%BA%8F-%E6%A3%80%E6%B5%8B%E4%B8%8D%E4%B8%80%E8%87%B4%E5%B0%B1%E4%BC%9A%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5"><span class="nav-number">6.0.0.8.</span> <span class="nav-text">如果要测试高可用, 应该使用温柔的方式关闭节点, 才能展示zkfailover controller如何将另一个节点激活, 并再将stopped的节点重新启动后, 成为standby状态(这里也有journal node的检测程序, 检测不一致就会启动失败)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hadoop-%E7%9B%AE%E5%BD%95%E5%92%8C-hadoop-app%E7%9B%AE%E5%BD%95%E4%B8%8B%E9%83%BD%E6%9C%89-metastore-db%E8%BF%99%E4%B8%AA%E7%9B%AE%E5%BD%95-%E8%BF%99%E4%BC%9A%E5%AF%BC%E8%87%B4%E4%B8%80%E4%BA%9Bspark%E5%90%AF%E5%8A%A8%E6%89%BE%E4%B8%8D%E5%88%B0metastore-db%E7%9A%84%E9%94%99%E8%AF%AF-%E6%88%91%E4%BD%BF%E7%94%A8%E4%B8%8B%E9%9D%A2%E7%9A%84%E8%AF%AD%E5%8F%A5%E8%A6%86%E7%9B%96%E4%BA%86app%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%9D%83%E9%99%90%E5%B1%9E%E4%BA%8Eroot%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9-%E8%A7%A3%E5%86%B3%E4%BA%86%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98-%E4%BD%86%E6%98%AF%E5%8E%9F%E5%9B%A0%E6%9A%82%E6%97%B6%E4%B8%8D%E6%98%8E"><span class="nav-number">6.0.0.9.</span> <span class="nav-text">hadoop 目录和 hadoop&#x2F;app目录下都有 metastore_db这个目录, 这会导致一些spark启动找不到metastore_db的错误, 我使用下面的语句覆盖了app目录下权限属于root的文件夹, 解决了这个问题, 但是原因暂时不明</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scp%E5%91%BD%E4%BB%A4"><span class="nav-number">7.</span> <span class="nav-text">scp命令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -406,7 +443,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
