@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/31/%E5%9C%A8hadoop%E9%9B%86%E7%BE%A4%E4%B8%8A%E8%BF%9B%E8%A1%8Cspark%E4%BD%9C%E4%B8%9A/">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/09/23/Kaggle%20Digit%20Recognizer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,102 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/31/%E5%9C%A8hadoop%E9%9B%86%E7%BE%A4%E4%B8%8A%E8%BF%9B%E8%A1%8Cspark%E4%BD%9C%E4%B8%9A/" class="post-title-link" itemprop="url">浦发项目准备-在hadoop集群上进行spark作业</a>
+            <a href="/2021/09/23/Kaggle%20Digit%20Recognizer/" class="post-title-link" itemprop="url">Kaggle Digit Recognizer</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-09-23 15:09:43 / Modified: 19:02:28" itemprop="dateCreated datePublished" datetime="2021-09-23T15:09:43+08:00">2021-09-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="全部流程简介"><a href="#全部流程简介" class="headerlink" title="全部流程简介"></a>全部流程简介</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">pytorch进行神经网络训练的流程：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">一.首先定义神经网络模型 model=Net()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">二.定义优化器  optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">三.训练阶段，循环每个epoch，对于一个epoch：</span></span><br><span class="line"><span class="string">    1.将模型设置为训练模式  model.train()</span></span><br><span class="line"><span class="string">    2.将训练数据分为batch_size大小的组，对每一组中所有的样本：</span></span><br><span class="line"><span class="string">        1).将梯度初始化为0  optimizer.zero_grad()</span></span><br><span class="line"><span class="string">        2).对这组样本进行训练，并得到输出  output=model(data)</span></span><br><span class="line"><span class="string">        3).根据预测输出和真实类别计算损失函数  loss=F.nll_loss(output,target)</span></span><br><span class="line"><span class="string">        4).反向传播，计算梯度  loss.backward()</span></span><br><span class="line"><span class="string">        5).更新模型参数  optimizer.step()</span></span><br><span class="line"><span class="string">    3.保存模型（可省略）  torch.save(model,&quot;mnist_torch.pkl&quot;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">四.加载已训练好的模型（可省略）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">五.测试阶段，对于所有的测试样本：</span></span><br><span class="line"><span class="string">    1.将模型设置为评价模式  model.eval()</span></span><br><span class="line"><span class="string">    2.根据建好的模型对测试数据进行预测，得到预测结果  output=model(data)</span></span><br><span class="line"><span class="string">    3.计算损失函数  test_loss+=F.nll_loss(output,target).data</span></span><br><span class="line"><span class="string">    4.将概率最大的类别当作预测类别，并计算准确率  correct+=pred.eq(target.data).cpu().sum()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">上述第四大步的第4小步是当问题是分类问题时才有的</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">上述中 model.train()和model.eval()的不同在于，model.eval()去除神经网络中的随机性，而model.train()</span></span><br><span class="line"><span class="string">则保留了神经网络中的随机性。这是因为神经网络中的某些操作（如dropout等），会存在一定的随机性（dropout</span></span><br><span class="line"><span class="string">会随机让神经网络中的节点失活），所以为了保证预测结果是可复现的，所以在测试阶段要设置为model.eval()。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>————————————————<br>版权声明：本文为CSDN博主「棉花糖灬」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zuzhiang/article/details/104930158">https://blog.csdn.net/zuzhiang/article/details/104930158</a></p>
+<h2 id="导入相关的包和设置相关超参数"><a href="#导入相关的包和设置相关超参数" class="headerlink" title="导入相关的包和设置相关超参数"></a>导入相关的包和设置相关超参数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np  <span class="comment"># linear algebra</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd  <span class="comment"># data processing, CSV file I/O (e.g. pd.read_csv)</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> transforms</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># https://blog.csdn.net/laplacebh/article/details/97648824</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DATASET_PATH = <span class="string">&quot;D:/Dataset/Kaggle/DigitRecognizer/&quot;</span></span><br><span class="line">TRAIN_PATH = DATASET_PATH + <span class="string">&quot;train.csv&quot;</span></span><br><span class="line">TEST_PATH = DATASET_PATH + <span class="string">&quot;test.csv&quot;</span></span><br><span class="line">EPOCH = <span class="number">30</span>  <span class="comment"># 训练整批数据多少次</span></span><br><span class="line">BATCH_SIZE = <span class="number">512</span></span><br><span class="line">TEST_BATCH_SIZE = <span class="number">500</span></span><br><span class="line">LR = <span class="number">0.002</span>  <span class="comment"># 学习率</span></span><br><span class="line">device = torch.device(<span class="string">&#x27;cuda:0&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>DigitRecongnizer数据集略解</p>
+<p>全数据集 shape = (42001, 785)</p>
+<p>其中42001行, 第一行为列名</p>
+<p>[‘label’, ‘pixel0’, ‘pixel1’, …, ‘pixel781’, ‘pixel782’,  ‘pixel783’]</p>
+<p>每行为(785,) ,第一位为label</p>
+<p>所以上述方法将数据集处理为, 42000张 28*28(784)的黑白数据集 像素值只有0和1两个值</p>
+<h4 id="参考-https-blog-csdn-net-laplacebh-article-details-97648824"><a href="#参考-https-blog-csdn-net-laplacebh-article-details-97648824" class="headerlink" title="参考: https://blog.csdn.net/laplacebh/article/details/97648824"></a>参考: <a target="_blank" rel="noopener" href="https://blog.csdn.net/laplacebh/article/details/97648824">https://blog.csdn.net/laplacebh/article/details/97648824</a></h4><h1 id="编写Dataset"><a href="#编写Dataset" class="headerlink" title="编写Dataset"></a>编写Dataset</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyDataset</span>(<span class="params">Dataset</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, df, transform, train=<span class="literal">True</span></span>):</span></span><br><span class="line">        self.df = df.values</span><br><span class="line">        self.transform = transform</span><br><span class="line">        self.train = train</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.df)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, index</span>):</span></span><br><span class="line">        <span class="keyword">if</span> self.train == <span class="literal">True</span>:  <span class="comment"># 训练集or验证集</span></span><br><span class="line">            label = self.df[index, <span class="number">0</span>]</span><br><span class="line">            image = torch.FloatTensor(self.df[index, <span class="number">1</span>:]).view(<span class="number">28</span>, <span class="number">28</span>).unsqueeze(<span class="number">0</span>)</span><br><span class="line">            image = self.transform(image)</span><br><span class="line">            <span class="keyword">return</span> image, label</span><br><span class="line">        <span class="keyword">else</span>:  <span class="comment"># 测试集，没有标签</span></span><br><span class="line">            image = torch.FloatTensor(self.df[index, :]).view(<span class="number">28</span>, <span class="number">28</span>).unsqueeze(<span class="number">0</span>)</span><br><span class="line">            image = self.transform(image)</span><br><span class="line">            <span class="keyword">return</span> image</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">data = pd.read_csv(TRAIN_PATH)</span><br><span class="line">test = pd.read_csv(TEST_PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 33600, 8400</span></span><br><span class="line">train, valid = train_test_split(data, stratify=data.label, test_size=<span class="number">0.2</span>)</span><br><span class="line">transform = transforms.Compose([</span><br><span class="line">    transforms.ToPILImage(),</span><br><span class="line">    transforms.ToTensor(),</span><br><span class="line">    transforms.Normalize(mean=(<span class="number">0.5</span>,), std=(<span class="number">0.5</span>,)),</span><br><span class="line">])</span><br><span class="line">train_dataset = MyDataset(df=train, transform=transform)</span><br><span class="line">train_dataloader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br><span class="line">valid_dataset = MyDataset(df=valid, transform=transform)</span><br><span class="line">valid_dataloader = DataLoader(valid_dataset, batch_size=BATCH_SIZE)</span><br><span class="line">test_dataset = MyDataset(df=test, transform=transform, train=<span class="literal">False</span>)</span><br><span class="line">test_dataloader = DataLoader(test_dataset, batch_size=TEST_BATCH_SIZE)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="配置模型-卷积神经网络"><a href="#配置模型-卷积神经网络" class="headerlink" title="配置模型, 卷积神经网络"></a>配置模型, 卷积神经网络</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNN</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(CNN, self).__init__()</span><br><span class="line">        self.conv1 = nn.Sequential(  <span class="comment"># (1, 28, 28)</span></span><br><span class="line">            nn.Conv2d(</span><br><span class="line">                in_channels=<span class="number">1</span>,  <span class="comment"># 输入通道数，若图片为RGB则为3通道</span></span><br><span class="line">                out_channels=<span class="number">32</span>,  <span class="comment"># 输出通道数，即多少个卷积核一起卷积</span></span><br><span class="line">                kernel_size=<span class="number">3</span>,  <span class="comment"># 卷积核大小</span></span><br><span class="line">                stride=<span class="number">1</span>,  <span class="comment"># 卷积核移动步长</span></span><br><span class="line">                padding=<span class="number">1</span>,  <span class="comment"># 边缘增加的像素，使得得到的图片长宽没有变化</span></span><br><span class="line">            ),  <span class="comment"># (32, 28, 28)</span></span><br><span class="line">            nn.BatchNorm2d(<span class="number">32</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">        )</span><br><span class="line">        self.conv2 = nn.Sequential(</span><br><span class="line">            nn.Conv2d(<span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>),  <span class="comment"># (32, 28, 28)</span></span><br><span class="line">            nn.BatchNorm2d(<span class="number">32</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.MaxPool2d(kernel_size=<span class="number">2</span>),  <span class="comment"># 池化 (32, 14, 14)</span></span><br><span class="line">        )</span><br><span class="line">        self.conv3 = nn.Sequential(  <span class="comment"># (32, 14, 14)</span></span><br><span class="line">            nn.Conv2d(<span class="number">32</span>, <span class="number">64</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>),  <span class="comment"># (64, 14, 14)</span></span><br><span class="line">            nn.BatchNorm2d(<span class="number">64</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">        )</span><br><span class="line">        self.conv4 = nn.Sequential(</span><br><span class="line">            nn.Conv2d(<span class="number">64</span>, <span class="number">64</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>),  <span class="comment"># (64, 14, 14)</span></span><br><span class="line">            nn.BatchNorm2d(<span class="number">64</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.MaxPool2d(<span class="number">2</span>),  <span class="comment"># (64, 7, 7)</span></span><br><span class="line">        )</span><br><span class="line">        self.out = nn.Sequential(</span><br><span class="line">            nn.Dropout(p=<span class="number">0.5</span>),  <span class="comment"># 抑制过拟合</span></span><br><span class="line">            nn.Linear(<span class="number">64</span> * <span class="number">7</span> * <span class="number">7</span>, <span class="number">512</span>),</span><br><span class="line">            nn.BatchNorm1d(<span class="number">512</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Dropout(p=<span class="number">0.5</span>),</span><br><span class="line">            nn.Linear(<span class="number">512</span>, <span class="number">512</span>),</span><br><span class="line">            nn.BatchNorm1d(<span class="number">512</span>),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Dropout(p=<span class="number">0.5</span>),</span><br><span class="line">            nn.Linear(<span class="number">512</span>, <span class="number">10</span>),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        x = self.conv1(x)</span><br><span class="line">        x = self.conv2(x)</span><br><span class="line">        x = self.conv3(x)</span><br><span class="line">        x = self.conv4(x)</span><br><span class="line">        x = x.view(x.size(<span class="number">0</span>), -<span class="number">1</span>)  <span class="comment"># (batch_size, 64*7*7)</span></span><br><span class="line">        output = self.out(x)</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="训练模型并将模型保存到models-路径下"><a href="#训练模型并将模型保存到models-路径下" class="headerlink" title="训练模型并将模型保存到models/路径下"></a>训练模型并将模型保存到models/路径下</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span>():</span></span><br><span class="line">    <span class="comment"># 训练</span></span><br><span class="line">    optimizer = torch.optim.Adam(model.parameters(), lr=LR)</span><br><span class="line">    loss_func = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(EPOCH):</span><br><span class="line">        <span class="keyword">for</span> step, (x, y) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_dataloader):</span><br><span class="line">            b_x = x.to(device)</span><br><span class="line">            b_y = y.to(device)</span><br><span class="line">            output = model(b_x)</span><br><span class="line">            loss = loss_func(output, b_y)</span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> step % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;epoch:[&#123;&#125;/&#123;&#125;], loss:&#123;:.4f&#125;&#x27;</span>.<span class="built_in">format</span>(epoch, EPOCH, loss))</span><br><span class="line"></span><br><span class="line">        torch.save(model, <span class="string">f&quot;./models/mnist_epoch_<span class="subst">&#123;epoch&#125;</span>.pkl&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="检验模型"><a href="#检验模型" class="headerlink" title="检验模型"></a>检验模型</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">valid</span>():</span></span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        cor = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x, y <span class="keyword">in</span> valid_dataloader:</span><br><span class="line">            x = x.to(device)</span><br><span class="line">            y = y.to(device)</span><br><span class="line">            out = model(x)</span><br><span class="line">            pred = torch.<span class="built_in">max</span>(out, <span class="number">1</span>)[<span class="number">1</span>]</span><br><span class="line">            total += <span class="built_in">len</span>(y)</span><br><span class="line">            cor += (y == pred).<span class="built_in">sum</span>().item()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;acc:&#123;:.4f&#125;&#x27;</span>.<span class="built_in">format</span>(cor / total))</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="测试模型并将结果存入submission-csv"><a href="#测试模型并将结果存入submission-csv" class="headerlink" title="测试模型并将结果存入submission.csv"></a>测试模型并将结果存入submission.csv</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(DATASET_PATH + <span class="string">&quot;submission.csv&quot;</span>, <span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">            writer = csv.writer(csvfile,lineterminator=<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 先写入columns_name</span></span><br><span class="line">            writer.writerow([<span class="string">&quot;ImageId&quot;</span>, <span class="string">&quot;Label&quot;</span>])</span><br><span class="line">            <span class="keyword">for</span> step, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(test_dataloader):</span><br><span class="line">                x = x.to(device)</span><br><span class="line">                out = model(x)</span><br><span class="line">                pred = torch.<span class="built_in">max</span>(out, <span class="number">1</span>)[<span class="number">1</span>]</span><br><span class="line">                pred = pred.cpu().numpy()</span><br><span class="line">                result = np.c_[<span class="number">1</span> + step * TEST_BATCH_SIZE + np.arange(TEST_BATCH_SIZE), pred]</span><br><span class="line">                writer.writerows(result.tolist())</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="将结果提交到kaggle上"><a href="#将结果提交到kaggle上" class="headerlink" title="将结果提交到kaggle上"></a>将结果提交到kaggle上</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/09/13/python%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C%20datetime/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jiahui Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/13/python%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C%20datetime/" class="post-title-link" itemprop="url">python 时间操作</a>
         </h2>
 
         <div class="post-meta">
@@ -169,14 +264,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-08-31 19:41:44" itemprop="dateCreated datePublished" datetime="2021-08-31T19:41:44+08:00">2021-08-31</time>
+              <time title="Created: 2021-09-13 15:58:30" itemprop="dateCreated datePublished" datetime="2021-09-13T15:58:30+08:00">2021-09-13</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-02 17:01:07" itemprop="dateModified" datetime="2021-09-02T17:01:07+08:00">2021-09-02</time>
+                <time title="Modified: 2021-09-20 17:33:19" itemprop="dateModified" datetime="2021-09-20T17:33:19+08:00">2021-09-20</time>
               </span>
 
           
@@ -190,8 +285,148 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>python -m pyserini.index -collection JsonCollection -generator DefaultLuceneDocumentGenerator -threads 9 -input collection/collection_jsonl -index indexes/lucene-index-msmarco-passage-PoterStemmerStopwords -optimize -storeRaw -stemmer porter</p>
+          <h1 id="datetime使用"><a href="#datetime使用" class="headerlink" title="datetime使用"></a>datetime使用</h1><p>导入包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="comment"># 这是最常用的两个方法</span></span><br><span class="line"><span class="comment"># from datetim import datetime, date</span></span><br></pre></td></tr></table></figure>
 
+
+
+<h3 id="构造器生成时间"><a href="#构造器生成时间" class="headerlink" title="构造器生成时间"></a>构造器生成时间</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test = datetime.datetime(<span class="number">2020</span>, <span class="number">1</span>, <span class="number">1</span>)  <span class="comment">#year, mouth, day是必须的参数</span></span><br><span class="line">test</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>datetime.datetime(2020, 1, 1, 0, 0)</p>
+</blockquote>
+<h3 id="从字符串生成时间"><a href="#从字符串生成时间" class="headerlink" title="从字符串生成时间"></a>从字符串生成时间</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">time_str = <span class="string">&quot;2021-01-01 19:28:45&quot;</span></span><br><span class="line">datetime.datetime.strptime(time_str, <span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>)  <span class="comment">#这里的格式一个都不能错,大小写必须按照代码来,不知道为什么</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="获取当前时间-天"><a href="#获取当前时间-天" class="headerlink" title="获取当前时间(天)"></a>获取当前时间(天)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.date.today()</span><br><span class="line">datetime.date(<span class="number">2021</span>, <span class="number">9</span>, <span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(datetime.date.today())</span><br><span class="line"><span class="number">2021</span>-09-<span class="number">14</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="截取两个时间的间隔多少天"><a href="#截取两个时间的间隔多少天" class="headerlink" title="截取两个时间的间隔多少天"></a>截取两个时间的间隔多少天</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> datetime</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d1 = datetime.datetime(<span class="number">2018</span>,<span class="number">10</span>,<span class="number">31</span>)   <span class="comment"># 第一个日期</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d2 = datetime.datetime(<span class="number">2019</span>,02,02)   <span class="comment"># 第二个日期</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>interval = d2 - d1                   <span class="comment"># 两日期差距</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>interval.days                        <span class="comment"># 具体的天数                     </span></span><br><span class="line"><span class="number">94</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>interval.seconds                     <span class="comment"># 具体的秒数</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/09/10/pandas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jiahui Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/10/pandas/" class="post-title-link" itemprop="url">Pandas</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-09-10 11:36:20" itemprop="dateCreated datePublished" datetime="2021-09-10T11:36:20+08:00">2021-09-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-09-23 15:01:31" itemprop="dateModified" datetime="2021-09-23T15:01:31+08:00">2021-09-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="pandas对时间的操作总结与实验"><a href="#pandas对时间的操作总结与实验" class="headerlink" title="pandas对时间的操作总结与实验"></a>pandas对时间的操作总结与实验</h1><ul>
+<li>创建一个只有结构的空的dataFrame</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(columns =[<span class="string">&quot;ANNOTATION_ID&quot;</span>, <span class="string">&quot;ANNOTATION_VALUE&quot;</span>, <span class="string">&quot;STARTTIME&quot;</span>, <span class="string">&quot;ENDTIME&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用lambda对df的一列进行函数替换</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MouthGestFdataframe = getMouthGestF(MouthGestF_node)</span><br><span class="line">df [&quot;STARTTIME&quot;] = df [&quot;STARTTIME&quot;].apply(lambda x : TIME_ORDER_list[x] if x in TIME_ORDER_list else x)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>Pandas删除列</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataframe.drop(<span class="string">&#x27;列名&#x27;</span>, axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>选取时间区间内的数据, 代码为前1天的数据, offsets改为7就是7天</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mask = df[<span class="string">&#x27;dates&#x27;</span>].between(pd.to_datetime(<span class="string">&#x27;today&#x27;</span>) - pd.offsets.Day(<span class="number">1</span>),pd.to_datetime(<span class="string">&#x27;today&#x27;</span>) )</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>生成一个daterange</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.date_range(<span class="string">&#x27;2000-1-1&#x27;</span>, periods=<span class="number">200</span>, freq=<span class="string">&#x27;D&#x27;</span>)</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;dates&#x27;</span>:pd.date_range(<span class="string">&#x27;2018-01-01&#x27;</span>,<span class="string">&#x27;2019-01-01&#x27;</span>)&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>根据某一列来添加新的列</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># do_something为你想进行的处理, 可以是翻倍, 可以是从字典读值: dict[x]</span></span><br><span class="line">df[<span class="string">&#x27;新列&#x27;</span>] = df[<span class="string">&#x27;老列&#x27;</span>],apply(<span class="keyword">lambda</span> x: do_something(x))</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>根据某一列来</li>
+</ul>
+<ul>
+<li>df的merge = mysql的join</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_all = pf.merge(df1, df2, on=<span class="string">&#x27;thekey&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>df填充NAN</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.fillna(<span class="number">0</span>)</span><br><span class="line">df[<span class="string">&#x27;列&#x27;</span>].fillna(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="pandas加载csv一般操作"><a href="#pandas加载csv一般操作" class="headerlink" title="pandas加载csv一般操作"></a>pandas加载csv一般操作</h1>
       
     </div>
 
@@ -861,7 +1096,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
