@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"ikalista.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="写在前头本文参考 史涛老师的hadoop搭建文件 https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;31dd88692c7e Hadoop是什么？从狭义来说，Hadoop指的是Apache下的一款开源框架，目前常用的是Hadoop2版本。 Hadoop2主要包含以下3个组件：  HDFS：一个Hadoop的分布式文件系统，支持NameNode横向扩展，解决海量数据的存储。 YARN：一个负责作业">
+  <meta name="description" content="写在前头本文参考 史涛老师的hadoop搭建文件 https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;31dd88692c7e">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop建立集群">
 <meta property="og:url" content="https://ikalista.github.io/2021/08/16/centos7%E5%AE%89%E8%A3%85Hadoop%E5%85%A8%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Lee&#39;s Blog">
-<meta property="og:description" content="写在前头本文参考 史涛老师的hadoop搭建文件 https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;31dd88692c7e Hadoop是什么？从狭义来说，Hadoop指的是Apache下的一款开源框架，目前常用的是Hadoop2版本。 Hadoop2主要包含以下3个组件：  HDFS：一个Hadoop的分布式文件系统，支持NameNode横向扩展，解决海量数据的存储。 YARN：一个负责作业">
+<meta property="og:description" content="写在前头本文参考 史涛老师的hadoop搭建文件 https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;31dd88692c7e">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="c:/Users/Jiahui/AppData/Roaming/Typora/typora-user-images/image-20210906160409922.png">
 <meta property="og:image" content="c:/Users/Jiahui/AppData/Roaming/Typora/typora-user-images/image-20210826152543918.png">
 <meta property="article:published_time" content="2021-08-16T06:12:08.603Z">
-<meta property="article:modified_time" content="2021-09-06T08:13:49.222Z">
+<meta property="article:modified_time" content="2021-09-26T02:43:23.758Z">
 <meta property="article:author" content="Jiahui Li">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:/Users/Jiahui/AppData/Roaming/Typora/typora-user-images/image-20210906160409922.png">
@@ -183,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-06 16:13:49" itemprop="dateModified" datetime="2021-09-06T16:13:49+08:00">2021-09-06</time>
+                <time title="Modified: 2021-09-26 10:43:23" itemprop="dateModified" datetime="2021-09-26T10:43:23+08:00">2021-09-26</time>
               </span>
 
           
@@ -200,6 +200,8 @@
         <h1 id="写在前头"><a href="#写在前头" class="headerlink" title="写在前头"></a>写在前头</h1><p>本文参考</p>
 <p>史涛老师的hadoop搭建文件</p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/31dd88692c7e">https://www.jianshu.com/p/31dd88692c7e</a></p>
+<span id="more"></span>
+
 <h1 id="Hadoop是什么？"><a href="#Hadoop是什么？" class="headerlink" title="Hadoop是什么？"></a>Hadoop是什么？</h1><p><strong>从狭义来说</strong>，Hadoop指的是Apache下的一款开源框架，目前常用的是Hadoop2版本。</p>
 <p>Hadoop2主要包含以下3个组件：</p>
 <ul>
