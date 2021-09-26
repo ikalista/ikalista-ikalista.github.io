@@ -990,7 +990,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-26 10:37:14" itemprop="dateModified" datetime="2021-09-26T10:37:14+08:00">2021-09-26</time>
+                <time title="Modified: 2021-09-26 10:38:31" itemprop="dateModified" datetime="2021-09-26T10:38:31+08:00">2021-09-26</time>
               </span>
 
           
@@ -1006,52 +1006,14 @@
       
           <h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>说在开头, hexo是建站模板,而next是它的一款极致简约风格的黑白theme, 关于hexo和NexT的了解可以登录官网文档查看:</p>
 <p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
-<p>&lt; !– more –&gt;</p>
-<h1 id="node-js就绪"><a href="#node-js就绪" class="headerlink" title="node.js就绪"></a>node.js就绪</h1><p>首先下载node.js可以百度, 在此不多赘述</p>
-<h1 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h1><p>使用npm安装hexo-cli</p>
-<p><code>npm install -g hexo-cli</code></p>
-<p>npm是什么, JavaScript的npm, 就是python的pip, 是java的maven</p>
-<h1 id="初始化文件夹"><a href="#初始化文件夹" class="headerlink" title="初始化文件夹"></a>初始化文件夹</h1><p>然后你就可以在全局使用npm命令了, 就像普通的cmd命令一样</p>
-<p>在你喜欢的地方, 新建一个文件夹, 我的叫myblog, 所以将<myblog>替换为你喜欢的名字就好了</p>
-<p>在该文件夹的位置, 输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;myblog&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;myblog&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p>最后<myblog>文件夹的结构应该有类似如下的结构</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── <span class="built_in">source</span></span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-
-<p>在<myblog>\themes文件夹git clone hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:theme-next/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
-
-<p>至此, 所有文件准备完毕</p>
-<h1 id="配置文件修改与自定义"><a href="#配置文件修改与自定义" class="headerlink" title="配置文件修改与自定义"></a>配置文件修改与自定义</h1><p><myblog>下的配置文件 _config.yml:</p>
-<p>这个将会成为你的博客的抬头, 将内容修改成你自己的信息即可</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># Site</span></span><br><span class="line">title: Lee&#x27;s Blog</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Jiahui Li</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;&#x27;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这个设置为你的github项目地址, 注意main与master</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git </span><br><span class="line">  repo: git@github.com:ikalista/ikalista-ikalista.github.io.git</span><br><span class="line">  branch: main </span><br></pre></td></tr></table></figure>
-
-
-
-<p>themes\next下的配置文件 _config.yml:</p>
-<p>Gemini是最常见的选择, 就是我这个主题</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment"># scheme: Muse</span></span><br><span class="line"><span class="comment"># scheme: Mist</span></span><br><span class="line"><span class="comment"># scheme: Pisces</span></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h1><p>在/<myblog/>下开启git bash, 输入hexo server, 会在localhost:4000可视化你的博客, 适合提交前的本地调试</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="使用一句话发布所有更新的文章"><a href="#使用一句话发布所有更新的文章" class="headerlink" title="使用一句话发布所有更新的文章"></a>使用一句话发布所有更新的文章</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<p>hexo clean 清除缓存</p>
-<p>hexo g / hexo generate, 从你的markdown文件生成博客的静态网页文件</p>
-<p>hexo d / hexo depolyment, 向GitHub.io部署你的博客</p>
-<h1 id="更多的细节操作"><a href="#更多的细节操作" class="headerlink" title="更多的细节操作"></a>更多的细节操作</h1><p>在调试过程中我发现, 我的内容被Hexo自动生成了目录(table of content), 但是问题随之而来, 目录自动居中了, 这很不好看, 解决方案是使用更规范的markdown文档(之前写了些html), 这个问题就消失了, 有点神奇</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/09/hexo+next%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
