@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"ikalista.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一面SQL partition by的用法当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列 e.g.     salary    1000   1000   3000   rank()会给出1, 1, 3的结果 row_num()会给出1, 2, 3的结果 这里根据细节可以实现两种写法, 取前两名: 12345s">
+  <meta name="description" content="一面SQL partition by的用法当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列 e.g.     salary    1000   1000   3000   rank()会给出1, 1, 3的结果 row_num()会给出1, 2, 3的结果 这里根据细节可以实现两种写法, 取前两名: 1234">
 <meta property="og:type" content="article">
 <meta property="og:title" content="特斯拉应用数据工程师 校招面试总结">
 <meta property="og:url" content="https://ikalista.github.io/2021/10/29/%E7%89%B9%E6%96%AF%E6%8B%89%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Lee">
-<meta property="og:description" content="一面SQL partition by的用法当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列 e.g.     salary    1000   1000   3000   rank()会给出1, 1, 3的结果 row_num()会给出1, 2, 3的结果 这里根据细节可以实现两种写法, 取前两名: 12345s">
+<meta property="og:description" content="一面SQL partition by的用法当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列 e.g.     salary    1000   1000   3000   rank()会给出1, 1, 3的结果 row_num()会给出1, 2, 3的结果 这里根据细节可以实现两种写法, 取前两名: 1234">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-29T04:15:19.060Z">
-<meta property="article:modified_time" content="2021-10-29T04:14:39.202Z">
+<meta property="article:modified_time" content="2021-10-29T04:32:01.341Z">
 <meta property="article:author" content="Jiahui Li">
 <meta name="twitter:card" content="summary">
 
@@ -184,7 +184,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-10-29 12:15:19 / Modified: 12:14:39" itemprop="dateCreated datePublished" datetime="2021-10-29T12:15:19+08:00">2021-10-29</time>
+              <time title="Created: 2021-10-29 12:15:19 / Modified: 12:32:01" itemprop="dateCreated datePublished" datetime="2021-10-29T12:15:19+08:00">2021-10-29</time>
             </span>
 
           
@@ -198,7 +198,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h1><h3 id="SQL-partition-by的用法"><a href="#SQL-partition-by的用法" class="headerlink" title="SQL partition by的用法"></a>SQL partition by的用法</h3><p>当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列</p>
+        <span id="more"></span>
+
+<h1 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h1><h3 id="SQL-partition-by的用法"><a href="#SQL-partition-by的用法" class="headerlink" title="SQL partition by的用法"></a>SQL partition by的用法</h3><p>当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列</p>
 <p>e.g. </p>
 <table>
 <thead>
