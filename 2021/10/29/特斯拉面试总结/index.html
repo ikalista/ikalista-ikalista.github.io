@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"ikalista.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="datetime使用">
+  <meta name="description" content="一面SQL partition by的用法当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列 e.g.     salary    1000   1000   3000   rank()会给出1, 1, 3的结果 row_num()会给出1, 2, 3的结果 这里根据细节可以实现两种写法, 取前两名: 12345s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python 时间操作">
-<meta property="og:url" content="https://ikalista.github.io/2021/09/13/python%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C%20datetime/index.html">
+<meta property="og:title" content="特斯拉应用数据工程师 校招面试总结">
+<meta property="og:url" content="https://ikalista.github.io/2021/10/29/%E7%89%B9%E6%96%AF%E6%8B%89%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Lee">
-<meta property="og:description" content="datetime使用">
+<meta property="og:description" content="一面SQL partition by的用法当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列 e.g.     salary    1000   1000   3000   rank()会给出1, 1, 3的结果 row_num()会给出1, 2, 3的结果 这里根据细节可以实现两种写法, 取前两名: 12345s">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-09-13T07:58:30.666Z">
-<meta property="article:modified_time" content="2021-09-26T02:44:07.831Z">
+<meta property="article:published_time" content="2021-10-29T04:15:19.060Z">
+<meta property="article:modified_time" content="2021-10-29T04:14:39.202Z">
 <meta property="article:author" content="Jiahui Li">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://ikalista.github.io/2021/09/13/python%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C%20datetime/">
+<link rel="canonical" href="https://ikalista.github.io/2021/10/29/%E7%89%B9%E6%96%AF%E6%8B%89%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>python 时间操作 | Lee</title>
+  <title>特斯拉应用数据工程师 校招面试总结 | Lee</title>
   
 
 
@@ -160,7 +160,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/09/13/python%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C%20datetime/">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/10/29/%E7%89%B9%E6%96%AF%E6%8B%89%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/me.jpg">
@@ -173,7 +173,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          python 时间操作
+          特斯拉应用数据工程师 校招面试总结
         </h1>
 
         <div class="post-meta">
@@ -182,16 +182,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-09-13 15:58:30" itemprop="dateCreated datePublished" datetime="2021-09-13T15:58:30+08:00">2021-09-13</time>
+              <time title="Created: 2021-10-29 12:15:19 / Modified: 12:14:39" itemprop="dateCreated datePublished" datetime="2021-10-29T12:15:19+08:00">2021-10-29</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-26 10:44:07" itemprop="dateModified" datetime="2021-09-26T10:44:07+08:00">2021-09-26</time>
-              </span>
 
           
 
@@ -204,26 +198,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="datetime使用"><a href="#datetime使用" class="headerlink" title="datetime使用"></a>datetime使用</h1><span id="more"></span>
+        <h1 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h1><h3 id="SQL-partition-by的用法"><a href="#SQL-partition-by的用法" class="headerlink" title="SQL partition by的用法"></a>SQL partition by的用法</h3><p>当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列</p>
+<p>e.g. </p>
+<table>
+<thead>
+<tr>
+<th align="left">salary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1000</td>
+</tr>
+<tr>
+<td align="left">1000</td>
+</tr>
+<tr>
+<td align="left">3000</td>
+</tr>
+</tbody></table>
+<p>rank()会给出1, 1, 3的结果</p>
+<p>row_num()会给出1, 2, 3的结果</p>
+<p>这里根据细节可以实现两种写法, 取前两名:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dept_id, e_id, salary_rank <span class="keyword">from</span> </span><br><span class="line">(</span><br><span class="line">    <span class="keyword">select</span> e_id, dept_id, salary, <span class="built_in">rank</span>(salary)<span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> salary <span class="keyword">group</span> <span class="keyword">by</span> dept_id) salary_rank <span class="keyword">from</span> <span class="keyword">table</span> </span><br><span class="line">)</span><br><span class="line"><span class="keyword">where</span> salary_rank <span class="operator">&gt;=</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
-<p>导入包</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="comment"># 这是最常用的两个方法</span></span><br><span class="line"><span class="comment"># from datetim import datetime, date</span></span><br></pre></td></tr></table></figure>
+<h3 id="快排-永远的神"><a href="#快排-永远的神" class="headerlink" title="快排 永远的神"></a>快排 永远的神</h3><h3 id="pyspark-写一个word-count"><a href="#pyspark-写一个word-count" class="headerlink" title="pyspark 写一个word count"></a>pyspark 写一个word count</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkConf, SparkContext</span><br><span class="line">conf = SparkConf().setAppName(<span class="string">&quot;wordcount&quot;</span>).setMaster(<span class="string">&quot;local[2]&quot;</span>)</span><br><span class="line">sc = SparkContext(conf=conf)</span><br><span class="line">sc.setLogLevel(<span class="string">&quot;ERROR&quot;</span>)</span><br><span class="line">inputdata = sc.textFile(<span class="string">&quot;2.txt&quot;</span>)</span><br><span class="line">output = inputdata\</span><br><span class="line">		.flatMap(<span class="keyword">lambda</span> x: x.split(<span class="string">&quot; &quot;</span>))\</span><br><span class="line">		.<span class="built_in">map</span>(<span class="keyword">lambda</span> x: (x, <span class="number">1</span>))\</span><br><span class="line">        .reduceByKey(<span class="keyword">lambda</span> a, b: a + b)</span><br><span class="line"></span><br><span class="line">result = output.collect()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line">sc.stop()</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="构造器生成时间"><a href="#构造器生成时间" class="headerlink" title="构造器生成时间"></a>构造器生成时间</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test = datetime.datetime(<span class="number">2020</span>, <span class="number">1</span>, <span class="number">1</span>)  <span class="comment">#year, mouth, day是必须的参数</span></span><br><span class="line">test</span><br></pre></td></tr></table></figure>
+<h3 id="LRU-算法题"><a href="#LRU-算法题" class="headerlink" title="LRU 算法题"></a>LRU 算法题</h3><p>使用linkedhashmap可以做到一个带有index的链表</p>
+<h3 id="Spark-submit参数说明"><a href="#Spark-submit参数说明" class="headerlink" title="Spark-submit参数说明"></a>Spark-submit参数说明</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lingeio/article/details/93605935">https://blog.csdn.net/lingeio/article/details/93605935</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spark-submit \</span><br><span class="line">--class com.sm.liujinhe.job.Idmapping \</span><br><span class="line">--master yarn \</span><br><span class="line">--deploy-mode client \</span><br><span class="line">--driver-memory 4G \</span><br><span class="line">--num-executors 30 \</span><br><span class="line">--executor-memory 6G \</span><br><span class="line">--executor-cores 3 \</span><br><span class="line">--conf spark.default.parallelism=180 \</span><br><span class="line">/liujinhe/jars/idmapping-1.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>datetime.datetime(2020, 1, 1, 0, 0)</p>
-</blockquote>
-<h3 id="从字符串生成时间"><a href="#从字符串生成时间" class="headerlink" title="从字符串生成时间"></a>从字符串生成时间</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">time_str = <span class="string">&quot;2021-01-01 19:28:45&quot;</span></span><br><span class="line">datetime.datetime.strptime(time_str, <span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>)  <span class="comment">#这里的格式一个都不能错,大小写必须按照代码来,不知道为什么</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="获取当前时间-天"><a href="#获取当前时间-天" class="headerlink" title="获取当前时间(天)"></a>获取当前时间(天)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.date.today()</span><br><span class="line">datetime.date(<span class="number">2021</span>, <span class="number">9</span>, <span class="number">14</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(datetime.date.today())</span><br><span class="line"><span class="number">2021</span>-09-<span class="number">14</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="截取两个时间的间隔多少天"><a href="#截取两个时间的间隔多少天" class="headerlink" title="截取两个时间的间隔多少天"></a>截取两个时间的间隔多少天</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> datetime</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d1 = datetime.datetime(<span class="number">2018</span>,<span class="number">10</span>,<span class="number">31</span>)   <span class="comment"># 第一个日期</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d2 = datetime.datetime(<span class="number">2019</span>,02,02)   <span class="comment"># 第二个日期</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>interval = d2 - d1                   <span class="comment"># 两日期差距</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>interval.days                        <span class="comment"># 具体的天数                     </span></span><br><span class="line"><span class="number">94</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>interval.seconds                     <span class="comment"># 具体的秒数</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
-
+<h1 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h1><p>排序算法的时间复杂度是nlogn!!! 我说成了logn</p>
+<p>jvm</p>
+<p>spark内部流程</p>
+<p>hadoop内部流程, 读写流程</p>
+<p>遇到过的困难</p>
 
     </div>
 
@@ -239,13 +249,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/10/pandas/" rel="prev" title="Pandas">
-      <i class="fa fa-chevron-left"></i> Pandas
+    <a href="/2021/10/11/pyspark/" rel="prev" title="pyspark学习">
+      <i class="fa fa-chevron-left"></i> pyspark学习
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/09/23/Kaggle%20Digit%20Recognizer/" rel="next" title="Kaggle Digit Recognizer">
-      Kaggle Digit Recognizer <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -304,7 +311,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#datetime%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">datetime使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E7%94%9F%E6%88%90%E6%97%B6%E9%97%B4"><span class="nav-number">1.0.1.</span> <span class="nav-text">构造器生成时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%94%9F%E6%88%90%E6%97%B6%E9%97%B4"><span class="nav-number">1.0.2.</span> <span class="nav-text">从字符串生成时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4-%E5%A4%A9"><span class="nav-number">1.0.3.</span> <span class="nav-text">获取当前时间(天)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%AA%E5%8F%96%E4%B8%A4%E4%B8%AA%E6%97%B6%E9%97%B4%E7%9A%84%E9%97%B4%E9%9A%94%E5%A4%9A%E5%B0%91%E5%A4%A9"><span class="nav-number">1.0.4.</span> <span class="nav-text">截取两个时间的间隔多少天</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">一面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-partition-by%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">1.0.1.</span> <span class="nav-text">SQL partition by的用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E6%8E%92-%E6%B0%B8%E8%BF%9C%E7%9A%84%E7%A5%9E"><span class="nav-number">1.0.2.</span> <span class="nav-text">快排 永远的神</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pyspark-%E5%86%99%E4%B8%80%E4%B8%AAword-count"><span class="nav-number">1.0.3.</span> <span class="nav-text">pyspark 写一个word count</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LRU-%E7%AE%97%E6%B3%95%E9%A2%98"><span class="nav-number">1.0.4.</span> <span class="nav-text">LRU 算法题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark-submit%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">1.0.5.</span> <span class="nav-text">Spark-submit参数说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">二面</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -320,7 +327,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

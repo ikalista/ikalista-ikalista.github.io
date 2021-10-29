@@ -155,6 +155,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/10/29/%E7%89%B9%E6%96%AF%E6%8B%89%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.jpg">
+      <meta itemprop="name" content="Jiahui Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/29/%E7%89%B9%E6%96%AF%E6%8B%89%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">特斯拉应用数据工程师 校招面试总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-10-29 12:15:19 / Modified: 12:14:39" itemprop="dateCreated datePublished" datetime="2021-10-29T12:15:19+08:00">2021-10-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h1><h3 id="SQL-partition-by的用法"><a href="#SQL-partition-by的用法" class="headerlink" title="SQL partition by的用法"></a>SQL partition by的用法</h3><p>当你想对多个部门的工资进行排名, 并取前几名, 这里注意 rank()会给相同的值给出相同的排名, 而row_num()只会给出多少列</p>
+<p>e.g. </p>
+<table>
+<thead>
+<tr>
+<th align="left">salary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1000</td>
+</tr>
+<tr>
+<td align="left">1000</td>
+</tr>
+<tr>
+<td align="left">3000</td>
+</tr>
+</tbody></table>
+<p>rank()会给出1, 1, 3的结果</p>
+<p>row_num()会给出1, 2, 3的结果</p>
+<p>这里根据细节可以实现两种写法, 取前两名:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dept_id, e_id, salary_rank <span class="keyword">from</span> </span><br><span class="line">(</span><br><span class="line">    <span class="keyword">select</span> e_id, dept_id, salary, <span class="built_in">rank</span>(salary)<span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> salary <span class="keyword">group</span> <span class="keyword">by</span> dept_id) salary_rank <span class="keyword">from</span> <span class="keyword">table</span> </span><br><span class="line">)</span><br><span class="line"><span class="keyword">where</span> salary_rank <span class="operator">&gt;=</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="快排-永远的神"><a href="#快排-永远的神" class="headerlink" title="快排 永远的神"></a>快排 永远的神</h3><h3 id="pyspark-写一个word-count"><a href="#pyspark-写一个word-count" class="headerlink" title="pyspark 写一个word count"></a>pyspark 写一个word count</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkConf, SparkContext</span><br><span class="line">conf = SparkConf().setAppName(<span class="string">&quot;wordcount&quot;</span>).setMaster(<span class="string">&quot;local[2]&quot;</span>)</span><br><span class="line">sc = SparkContext(conf=conf)</span><br><span class="line">sc.setLogLevel(<span class="string">&quot;ERROR&quot;</span>)</span><br><span class="line">inputdata = sc.textFile(<span class="string">&quot;2.txt&quot;</span>)</span><br><span class="line">output = inputdata\</span><br><span class="line">		.flatMap(<span class="keyword">lambda</span> x: x.split(<span class="string">&quot; &quot;</span>))\</span><br><span class="line">		.<span class="built_in">map</span>(<span class="keyword">lambda</span> x: (x, <span class="number">1</span>))\</span><br><span class="line">        .reduceByKey(<span class="keyword">lambda</span> a, b: a + b)</span><br><span class="line"></span><br><span class="line">result = output.collect()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line">sc.stop()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="LRU-算法题"><a href="#LRU-算法题" class="headerlink" title="LRU 算法题"></a>LRU 算法题</h3><p>使用linkedhashmap可以做到一个带有index的链表</p>
+<h3 id="Spark-submit参数说明"><a href="#Spark-submit参数说明" class="headerlink" title="Spark-submit参数说明"></a>Spark-submit参数说明</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lingeio/article/details/93605935">https://blog.csdn.net/lingeio/article/details/93605935</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spark-submit \</span><br><span class="line">--class com.sm.liujinhe.job.Idmapping \</span><br><span class="line">--master yarn \</span><br><span class="line">--deploy-mode client \</span><br><span class="line">--driver-memory 4G \</span><br><span class="line">--num-executors 30 \</span><br><span class="line">--executor-memory 6G \</span><br><span class="line">--executor-cores 3 \</span><br><span class="line">--conf spark.default.parallelism=180 \</span><br><span class="line">/liujinhe/jars/idmapping-1.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<h1 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h1><p>排序算法的时间复杂度是nlogn!!! 我说成了logn</p>
+<p>jvm</p>
+<p>spark内部流程</p>
+<p>hadoop内部流程, 读写流程</p>
+<p>遇到过的困难</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/10/11/pyspark/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -270,294 +364,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/09/23/Kaggle%20Digit%20Recognizer/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/09/13/python%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C%20datetime/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me.jpg">
-      <meta itemprop="name" content="Jiahui Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lee">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/13/python%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C%20datetime/" class="post-title-link" itemprop="url">python 时间操作</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-09-13 15:58:30" itemprop="dateCreated datePublished" datetime="2021-09-13T15:58:30+08:00">2021-09-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-26 10:44:07" itemprop="dateModified" datetime="2021-09-26T10:44:07+08:00">2021-09-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="datetime使用"><a href="#datetime使用" class="headerlink" title="datetime使用"></a>datetime使用</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/13/python%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C%20datetime/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/09/10/pandas/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me.jpg">
-      <meta itemprop="name" content="Jiahui Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lee">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/10/pandas/" class="post-title-link" itemprop="url">Pandas</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-09-10 11:36:20" itemprop="dateCreated datePublished" datetime="2021-09-10T11:36:20+08:00">2021-09-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-26 10:43:48" itemprop="dateModified" datetime="2021-09-26T10:43:48+08:00">2021-09-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="pandas对时间的操作总结与实验"><a href="#pandas对时间的操作总结与实验" class="headerlink" title="pandas对时间的操作总结与实验"></a>pandas对时间的操作总结与实验</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/10/pandas/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/27/infs7410/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me.jpg">
-      <meta itemprop="name" content="Jiahui Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lee">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/27/infs7410/" class="post-title-link" itemprop="url">infs学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-08-27 09:51:31" itemprop="dateCreated datePublished" datetime="2021-08-27T09:51:31+08:00">2021-08-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-26 10:46:18" itemprop="dateModified" datetime="2021-09-26T10:46:18+08:00">2021-09-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h1><p>N-Grams</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/27/infs7410/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/08/24/pip%E6%BA%90%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me.jpg">
-      <meta itemprop="name" content="Jiahui Li">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lee">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/24/pip%E6%BA%90%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">pip源问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-08-24 09:14:47" itemprop="dateCreated datePublished" datetime="2021-08-24T09:14:47+08:00">2021-08-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-26 10:44:01" itemprop="dateModified" datetime="2021-09-26T10:44:01+08:00">2021-09-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="临时修改pip源"><a href="#临时修改pip源" class="headerlink" title="临时修改pip源"></a>临时修改pip源</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -i 源  </span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/24/pip%E6%BA%90%E9%97%AE%E9%A2%98/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -890,7 +696,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
