@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ikalista.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="信息检索课程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息检索课程">
+<meta property="og:url" content="https://ikalista.github.io/2021/11/11/infs7410/index.html">
+<meta property="og:site_name" content="Lee">
+<meta property="og:description" content="信息检索课程">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="d:/myblog/source/images/Precision&Recall公式.png">
+<meta property="og:image" content="d:/myblog/source/images/Precision&Recall通俗易懂的图片.png">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-99a74fedb08602d2752b47c9fcff169b_r.jpg">
+<meta property="article:published_time" content="2021-11-10T17:02:54.993Z">
+<meta property="article:modified_time" content="2021-11-15T09:20:17.923Z">
+<meta property="article:author" content="Jiahui Li">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:/myblog/source/images/Precision&Recall公式.png">
+
+<link rel="canonical" href="https://ikalista.github.io/2021/11/11/infs7410/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>信息检索课程 | Lee</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Lee</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2021/11/11/infs7410/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.jpg">
+      <meta itemprop="name" content="Jiahui Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          信息检索课程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-11 01:02:54" itemprop="dateCreated datePublished" datetime="2021-11-11T01:02:54+08:00">2021-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-15 17:20:17" itemprop="dateModified" datetime="2021-11-15T17:20:17+08:00">2021-11-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="信息检索课程"><a href="#信息检索课程" class="headerlink" title="信息检索课程"></a>信息检索课程</h1><span id="more"></span>
+
+<h1 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h1><h2 id="词干提取和词形还原在-NLP-中在什么位置？"><a href="#词干提取和词形还原在-NLP-中在什么位置？" class="headerlink" title="词干提取和词形还原在 NLP 中在什么位置？"></a>词干提取和词形还原在 NLP 中在什么位置？</h2><p>词干提取是英文语料预处理的一个步骤（中文并不需要），而语料预处理是 <a href="https://link.zhihu.com/?target=https://easyai.tech/ai-definition/nlp/">NLP</a> 的第一步，下面这张图将让大家知道词干提取在这个知识结构中的位置。</p>
+<p>词干提取 doing -&gt; do</p>
+<p>词形还原 is -&gt; be</p>
+<p>N-Grams</p>
+<h2 id="Week1-Review"><a href="#Week1-Review" class="headerlink" title="Week1 Review"></a>Week1 Review</h2><h3 id="Q1-https-piazza-com-class-krcz6heukvxli-cid-40"><a href="#Q1-https-piazza-com-class-krcz6heukvxli-cid-40" class="headerlink" title="Q1 https://piazza.com/class/krcz6heukvxli?cid=40"></a>Q1 <a target="_blank" rel="noopener" href="https://piazza.com/class/krcz6heukvxli?cid=40">https://piazza.com/class/krcz6heukvxli?cid=40</a></h3><h4 id="Describe-what-a-stemmer-is-including-what-its-inputs-and-outputs-goal-and-type-of-stemming-approaches"><a href="#Describe-what-a-stemmer-is-including-what-its-inputs-and-outputs-goal-and-type-of-stemming-approaches" class="headerlink" title="Describe what a stemmer is, including what its inputs and outputs, goal, and type of stemming approaches."></a>Describe what a stemmer is, including what its inputs and outputs, goal, and type of stemming approaches.</h4><h4 id="描述词干是什么，包括它的输入和输出，目标和词干方法的类型"><a href="#描述词干是什么，包括它的输入和输出，目标和词干方法的类型" class="headerlink" title="描述词干是什么，包括它的输入和输出，目标和词干方法的类型"></a>描述词干是什么，包括它的输入和输出，目标和词干方法的类型</h4><p>单词会有许多的形态的变化(morphological variations of words). </p>
+<ul>
+<li>inflectional (plurals, tenses) 时态, 复数</li>
+<li>derivational (making verbs nouns etc.) 动词化, 名词化</li>
+</ul>
+<p>在最基础的信息检索中, 程序和人不一样, 是无法理解时态和复数的, 程序会将他们分为不同的单词, 从直觉上来说这和我们的语言显然相悖, 所以词干法诞生了.</p>
+<h5 id="词干法的两种类型"><a href="#词干法的两种类型" class="headerlink" title="词干法的两种类型:"></a>词干法的两种类型:</h5><ul>
+<li>Dictionary-based: uses lists of related words</li>
+<li>Algorithmic: uses program to determine related words</li>
+</ul>
+<p>词干法会使用算法, 或dictionary based, 将所有的term还原成最原始的状态, </p>
+<p>e.g. </p>
+<p>does -&gt; do </p>
+<p>cups -&gt; cup</p>
+<h4 id="To-what-category-of-stemming-approaches-does-the-Porter-stemmer-belong-to"><a href="#To-what-category-of-stemming-approaches-does-the-Porter-stemmer-belong-to" class="headerlink" title="To what category of stemming approaches does the Porter stemmer belong to?"></a>To what category of stemming approaches does the Porter stemmer belong to?</h4><h4 id="波特词干法属于哪一类词干法"><a href="#波特词干法属于哪一类词干法" class="headerlink" title="波特词干法属于哪一类词干法"></a>波特词干法属于哪一类词干法</h4><p>Algorithmic 算法</p>
+<h4 id="And-the-Krovetz-stemmer"><a href="#And-the-Krovetz-stemmer" class="headerlink" title="And the Krovetz stemmer?"></a>And the Krovetz stemmer?</h4><h4 id="Krovetz词干法属于哪一类词干法"><a href="#Krovetz词干法属于哪一类词干法" class="headerlink" title="Krovetz词干法属于哪一类词干法"></a>Krovetz词干法属于哪一类词干法</h4><p>Hybrid algorithmic-dictionary 两者融合的</p>
+<h3 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h3><p>Describe the Zipf’s law and its implication for information retrieval (e.g. with respect to indexing, term weighting).</p>
+<p>描述Zipf’s law 及其对信息检索的含义(例如索引、术语权重)</p>
+<p>f * rank = constant</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h1 id="Week2"><a href="#Week2" class="headerlink" title="Week2"></a>Week2</h1><h2 id="在信息检索领域-precision和recall是不能双全的"><a href="#在信息检索领域-precision和recall是不能双全的" class="headerlink" title="在信息检索领域, precision和recall是不能双全的"></a>在信息检索领域, precision和recall是不能双全的</h2><p><img src="D:\myblog\source\images\Precision&Recall公式.png" alt="Precision&amp;Recall公式"></p>
+<p><img src="D:\myblog\source\images\Precision&Recall通俗易懂的图片.png" alt="Precision&amp;Recall通俗易懂的图片"></p>
+<p><strong>版权声明：本文引用CSDN博主「飞行codes」的原创文章，遵循CC 4.0 BY-SA版权协议. 原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Arctic_Beacon/article/details/115757581">https://blog.csdn.net/Arctic_Beacon/article/details/115757581</a></strong></p>
+<p>一般来说 recall变高了, precision是会降低的, 所以有了F-measure: trade-off between P &amp; R</p>
+<p>Recall =         取到的正例 / ground truth的正例</p>
+<p>Percision =     取到的正例 / 取到的所有</p>
+<p>F-measure: F-measure: trade-off between P &amp; R</p>
+<p>p@i = i处cut off的precision</p>
+<p>r@i = i处cut off的recall</p>
+<p>AP: Average precision  = 求和 p@i / num_rel</p>
+<p>AR: Average recall = 求和 r@i</p>
+<p><strong>MAP</strong> = 多条语句的 AP的和</p>
+<p>rank_first_relevant = 第一个relevant的文件在第几个 e.g. 第二个出现, RR = 1/2</p>
+<p>RR: Reciprocal rank = 1 / rank_first_relevant      </p>
+<p>MRR: Mean RR, averaged over queries = 多条语句的RR</p>
+<h1 id="Week-3-rank-based-measures-OR-set-based-measures"><a href="#Week-3-rank-based-measures-OR-set-based-measures" class="headerlink" title="Week 3  rank-based measures OR set-based measures?"></a>Week 3  rank-based measures OR set-based measures?</h1><h1 id="Week-7"><a href="#Week-7" class="headerlink" title="Week 7"></a>Week 7</h1><h3 id="M2007数据集"><a href="#M2007数据集" class="headerlink" title="M2007数据集"></a>M2007数据集</h3><p>数据集有1017条query</p>
+<p>数据集有篇document</p>
+<h1 id="Week-11-Indexing-Index-Compression-索引的压缩"><a href="#Week-11-Indexing-Index-Compression-索引的压缩" class="headerlink" title="Week 11 Indexing: Index Compression 索引的压缩"></a>Week 11 Indexing: Index Compression 索引的压缩</h1><h2 id="一元编码"><a href="#一元编码" class="headerlink" title="一元编码"></a>一元编码</h2><table>
+<thead>
+<tr>
+<th align="center">数字(十进制)</th>
+<th align="center">编码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">10</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">110</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1110</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">11110</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">111110</td>
+</tr>
+</tbody></table>
+<p>就是几就有几个1, 0作为结尾避免歧义</p>
+<p><strong>Unary very good to encode small numbers</strong></p>
+<h3 id="Delta-Encoding"><a href="#Delta-Encoding" class="headerlink" title="Delta Encoding"></a>Delta Encoding</h3><p>假设: 小数字比大数字出现的概率更大</p>
+<p>This is often true for <strong>words</strong>: many words appear just once or twice in a document (think Zipf)</p>
+<p>但是作为文档ID会失败, 因为文档ID大数更多, 指数增加</p>
+<p>在倒排索引中, 索引是单词, 对于常见的单词, </p>
+<h3 id="Elias-gamma-codes"><a href="#Elias-gamma-codes" class="headerlink" title="Elias-gamma codes"></a>Elias-gamma codes</h3><p><img src="https://pic4.zhimg.com/v2-99a74fedb08602d2752b47c9fcff169b_r.jpg" alt="preview"></p>
+<p>对数字进行因式分解, e使用unary code存储, d使用binary进行存储</p>
+<p>比如 1023 = 2^9 + 511 = 1111111110 111111111</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/11/pyspark/" rel="prev" title="pyspark学习">
+      <i class="fa fa-chevron-left"></i> pyspark学习
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E8%AF%BE%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">信息检索课程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-1"><span class="nav-number">2.</span> <span class="nav-text">Week 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%8D%E5%B9%B2%E6%8F%90%E5%8F%96%E5%92%8C%E8%AF%8D%E5%BD%A2%E8%BF%98%E5%8E%9F%E5%9C%A8-NLP-%E4%B8%AD%E5%9C%A8%E4%BB%80%E4%B9%88%E4%BD%8D%E7%BD%AE%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">词干提取和词形还原在 NLP 中在什么位置？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Week1-Review"><span class="nav-number">2.2.</span> <span class="nav-text">Week1 Review</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q1-https-piazza-com-class-krcz6heukvxli-cid-40"><span class="nav-number">2.2.1.</span> <span class="nav-text">Q1 https:&#x2F;&#x2F;piazza.com&#x2F;class&#x2F;krcz6heukvxli?cid&#x3D;40</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Describe-what-a-stemmer-is-including-what-its-inputs-and-outputs-goal-and-type-of-stemming-approaches"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">Describe what a stemmer is, including what its inputs and outputs, goal, and type of stemming approaches.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0%E8%AF%8D%E5%B9%B2%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%8C%E5%8C%85%E6%8B%AC%E5%AE%83%E7%9A%84%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA%EF%BC%8C%E7%9B%AE%E6%A0%87%E5%92%8C%E8%AF%8D%E5%B9%B2%E6%96%B9%E6%B3%95%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">描述词干是什么，包括它的输入和输出，目标和词干方法的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%8D%E5%B9%B2%E6%B3%95%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.2.1.2.1.</span> <span class="nav-text">词干法的两种类型:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#To-what-category-of-stemming-approaches-does-the-Porter-stemmer-belong-to"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">To what category of stemming approaches does the Porter stemmer belong to?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A2%E7%89%B9%E8%AF%8D%E5%B9%B2%E6%B3%95%E5%B1%9E%E4%BA%8E%E5%93%AA%E4%B8%80%E7%B1%BB%E8%AF%8D%E5%B9%B2%E6%B3%95"><span class="nav-number">2.2.1.4.</span> <span class="nav-text">波特词干法属于哪一类词干法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#And-the-Krovetz-stemmer"><span class="nav-number">2.2.1.5.</span> <span class="nav-text">And the Krovetz stemmer?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Krovetz%E8%AF%8D%E5%B9%B2%E6%B3%95%E5%B1%9E%E4%BA%8E%E5%93%AA%E4%B8%80%E7%B1%BB%E8%AF%8D%E5%B9%B2%E6%B3%95"><span class="nav-number">2.2.1.6.</span> <span class="nav-text">Krovetz词干法属于哪一类词干法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q2"><span class="nav-number">2.2.2.</span> <span class="nav-text">Q2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.2.2.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week2"><span class="nav-number">3.</span> <span class="nav-text">Week2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E9%A2%86%E5%9F%9F-precision%E5%92%8Crecall%E6%98%AF%E4%B8%8D%E8%83%BD%E5%8F%8C%E5%85%A8%E7%9A%84"><span class="nav-number">3.1.</span> <span class="nav-text">在信息检索领域, precision和recall是不能双全的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-3-rank-based-measures-OR-set-based-measures"><span class="nav-number">4.</span> <span class="nav-text">Week 3  rank-based measures OR set-based measures?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-7"><span class="nav-number">5.</span> <span class="nav-text">Week 7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#M2007%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">5.0.1.</span> <span class="nav-text">M2007数据集</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-11-Indexing-Index-Compression-%E7%B4%A2%E5%BC%95%E7%9A%84%E5%8E%8B%E7%BC%A9"><span class="nav-number">6.</span> <span class="nav-text">Week 11 Indexing: Index Compression 索引的压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%85%83%E7%BC%96%E7%A0%81"><span class="nav-number">6.1.</span> <span class="nav-text">一元编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Delta-Encoding"><span class="nav-number">6.1.1.</span> <span class="nav-text">Delta Encoding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elias-gamma-codes"><span class="nav-number">6.1.2.</span> <span class="nav-text">Elias-gamma codes</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jiahui Li"
+      src="/images/me.jpg">
+  <p class="site-author-name" itemprop="name">Jiahui Li</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ikalista" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ikalista" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/jiahui.li6@uq.net.au" title="E-Mail → jiahui.li6@uq.net.au"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiahui Li</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":false},"react":{"opacityDefault":0.5,"opacityOnHover":0},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
