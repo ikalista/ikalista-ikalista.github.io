@@ -252,7 +252,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-16 16:45:46" itemprop="dateModified" datetime="2021-11-16T16:45:46+08:00">2021-11-16</time>
+                <time title="Modified: 2021-11-16 16:54:15" itemprop="dateModified" datetime="2021-11-16T16:54:15+08:00">2021-11-16</time>
               </span>
 
           
@@ -266,86 +266,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <span id="more"></span>
-
-<h1 id="INFS7410-信息检索课程梳理"><a href="#INFS7410-信息检索课程梳理" class="headerlink" title="INFS7410 信息检索课程梳理"></a>INFS7410 信息检索课程梳理</h1><h1 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h1><h2 id="词干提取和词形还原在-NLP-中在什么位置？"><a href="#词干提取和词形还原在-NLP-中在什么位置？" class="headerlink" title="词干提取和词形还原在 NLP 中在什么位置？"></a>词干提取和词形还原在 NLP 中在什么位置？</h2><p>词干提取是英文语料预处理的一个步骤（中文并不需要），而语料预处理是 <a href="https://link.zhihu.com/?target=https://easyai.tech/ai-definition/nlp/">NLP</a> 的第一步，下面这张图将让大家知道词干提取在这个知识结构中的位置。</p>
-<p>词干提取 doing -&gt; do</p>
-<p>词形还原 is -&gt; be</p>
-<p>N-Grams</p>
-<h2 id="Week1-Review"><a href="#Week1-Review" class="headerlink" title="Week1 Review"></a>Week1 Review</h2><h3 id="Q1-https-piazza-com-class-krcz6heukvxli-cid-40"><a href="#Q1-https-piazza-com-class-krcz6heukvxli-cid-40" class="headerlink" title="Q1 https://piazza.com/class/krcz6heukvxli?cid=40"></a>Q1 <a target="_blank" rel="noopener" href="https://piazza.com/class/krcz6heukvxli?cid=40">https://piazza.com/class/krcz6heukvxli?cid=40</a></h3><h4 id="Describe-what-a-stemmer-is-including-what-its-inputs-and-outputs-goal-and-type-of-stemming-approaches"><a href="#Describe-what-a-stemmer-is-including-what-its-inputs-and-outputs-goal-and-type-of-stemming-approaches" class="headerlink" title="Describe what a stemmer is, including what its inputs and outputs, goal, and type of stemming approaches."></a>Describe what a stemmer is, including what its inputs and outputs, goal, and type of stemming approaches.</h4><h4 id="描述词干是什么，包括它的输入和输出，目标和词干方法的类型"><a href="#描述词干是什么，包括它的输入和输出，目标和词干方法的类型" class="headerlink" title="描述词干是什么，包括它的输入和输出，目标和词干方法的类型"></a>描述词干是什么，包括它的输入和输出，目标和词干方法的类型</h4><p>单词会有许多的形态的变化(morphological variations of words). </p>
-<ul>
-<li>inflectional (plurals, tenses) 时态, 复数</li>
-<li>derivational (making verbs nouns etc.) 动词化, 名词化</li>
-</ul>
-<p>在最基础的信息检索中, 程序和人不一样, 是无法理解时态和复数的, 程序会将他们分为不同的单词, 从直觉上来说这和我们的语言显然相悖, 所以词干法诞生了.</p>
-<h5 id="词干法的两种类型"><a href="#词干法的两种类型" class="headerlink" title="词干法的两种类型:"></a>词干法的两种类型:</h5><ul>
-<li>Dictionary-based: uses lists of related words</li>
-<li>Algorithmic: uses program to determine related words</li>
-</ul>
-<p>词干法会使用算法, 或dictionary based, 将所有的term还原成最原始的状态, </p>
-<p>e.g. </p>
-<p>does -&gt; do </p>
-<p>cups -&gt; cup</p>
-<h4 id="To-what-category-of-stemming-approaches-does-the-Porter-stemmer-belong-to"><a href="#To-what-category-of-stemming-approaches-does-the-Porter-stemmer-belong-to" class="headerlink" title="To what category of stemming approaches does the Porter stemmer belong to?"></a>To what category of stemming approaches does the Porter stemmer belong to?</h4><h4 id="波特词干法属于哪一类词干法"><a href="#波特词干法属于哪一类词干法" class="headerlink" title="波特词干法属于哪一类词干法"></a>波特词干法属于哪一类词干法</h4><p>Algorithmic 算法</p>
-<h4 id="And-the-Krovetz-stemmer"><a href="#And-the-Krovetz-stemmer" class="headerlink" title="And the Krovetz stemmer?"></a>And the Krovetz stemmer?</h4><h4 id="Krovetz词干法属于哪一类词干法"><a href="#Krovetz词干法属于哪一类词干法" class="headerlink" title="Krovetz词干法属于哪一类词干法"></a>Krovetz词干法属于哪一类词干法</h4><p>Hybrid algorithmic-dictionary 两者融合的</p>
-<h3 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h3><p>Describe the Zipf’s law and its implication for information retrieval (e.g. with respect to indexing, term weighting).</p>
-<p>描述Zipf’s law 及其对信息检索的含义(例如索引、术语权重)</p>
-<p>f * rank = constant</p>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h1 id="Week2"><a href="#Week2" class="headerlink" title="Week2"></a>Week2</h1><h2 id="在信息检索领域-precision和recall是不能双全的"><a href="#在信息检索领域-precision和recall是不能双全的" class="headerlink" title="在信息检索领域, precision和recall是不能双全的"></a>在信息检索领域, precision和recall是不能双全的</h2><p><img src="D:\myblog\source\images\Precision&Recall公式.png" alt="Precision&amp;Recall公式"></p>
-<p><img src="D:\myblog\source\images\Precision&Recall通俗易懂的图片.png" alt="Precision&amp;Recall通俗易懂的图片"></p>
-<p><strong>版权声明：本文引用CSDN博主「飞行codes」的原创文章，遵循CC 4.0 BY-SA版权协议. 原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Arctic_Beacon/article/details/115757581">https://blog.csdn.net/Arctic_Beacon/article/details/115757581</a></strong></p>
-<p>一般来说 recall变高了, precision是会降低的, 所以有了F-measure: trade-off between P &amp; R</p>
-<p>Recall =         取到的正例 / ground truth的正例</p>
-<p>Percision =     取到的正例 / 取到的所有</p>
-<p>F-measure: F-measure: trade-off between P &amp; R</p>
-<p>p@i = i处cut off的precision</p>
-<p>r@i = i处cut off的recall</p>
-<p>AP: Average precision  = 求和 p@i / num_rel</p>
-<p>AR: Average recall = 求和 r@i</p>
-<p><strong>MAP</strong> = 多条语句的 AP的和</p>
-<p>rank_first_relevant = 第一个relevant的文件在第几个 e.g. 第二个出现, RR = 1/2</p>
-<p>RR: Reciprocal rank = 1 / rank_first_relevant      </p>
-<p>MRR: Mean RR, averaged over queries = 多条语句的RR</p>
-<h1 id="Week-3-rank-based-measures-OR-set-based-measures"><a href="#Week-3-rank-based-measures-OR-set-based-measures" class="headerlink" title="Week 3  rank-based measures OR set-based measures?"></a>Week 3  rank-based measures OR set-based measures?</h1><h1 id="Week-7"><a href="#Week-7" class="headerlink" title="Week 7"></a>Week 7</h1><h3 id="M2007数据集"><a href="#M2007数据集" class="headerlink" title="M2007数据集"></a>M2007数据集</h3><p>数据集有1017条query</p>
-<p>数据集有篇document</p>
-<h1 id="Week-11-Indexing-Index-Compression-索引的压缩"><a href="#Week-11-Indexing-Index-Compression-索引的压缩" class="headerlink" title="Week 11 Indexing: Index Compression 索引的压缩"></a>Week 11 Indexing: Index Compression 索引的压缩</h1><h2 id="一元编码"><a href="#一元编码" class="headerlink" title="一元编码"></a>一元编码</h2><table>
-<thead>
-<tr>
-<th align="center">数字(十进制)</th>
-<th align="center">编码</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">10</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">110</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">1110</td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="center">11110</td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="center">111110</td>
-</tr>
-</tbody></table>
-<p>就是几就有几个1, 0作为结尾避免歧义</p>
-<p><strong>Unary very good to encode small numbers</strong></p>
-<h3 id="Delta-Encoding"><a href="#Delta-Encoding" class="headerlink" title="Delta Encoding"></a>Delta Encoding</h3><p>假设: 小数字比大数字出现的概率更大</p>
-<p>This is often true for <strong>words</strong>: many words appear just once or twice in a document (think Zipf)</p>
-<p>但是作为文档ID会失败, 因为文档ID大数更多, 指数增加</p>
-<p>在倒排索引中, 索引是单词, 对于常见的单词, </p>
-<h3 id="Elias-gamma-codes"><a href="#Elias-gamma-codes" class="headerlink" title="Elias-gamma codes"></a>Elias-gamma codes</h3><p><img src="https://pic4.zhimg.com/v2-99a74fedb08602d2752b47c9fcff169b_r.jpg" alt="preview"></p>
-<p>对数字进行因式分解, e使用unary code存储, d使用binary进行存储</p>
-<p>比如 1023 = 2^9 + 511 = 1111111110 111111111</p>
-
+          <p>本文写于2021年S2的信息检索课程, 梳理了一下学习到的知识与内容, 从week1到week6详细介绍了基于词频的基础NLP机器学习算法的介绍, 在Week7之后, 详细介绍了LTR(learning to rank)的方法论, 以及一些实践, 包含bert的使用, 级联管道的预测提速等</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/11/infs7410/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
