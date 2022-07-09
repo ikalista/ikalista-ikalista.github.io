@@ -20,17 +20,19 @@
     var CONFIG = {"hostname":"ikalista.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="https://ikalista.github.io/categories/index.html">
+  <meta name="description" content="ID3 多叉树 按熵减挑选最佳特征，特征不会重用，只有有O(特征数量)的分裂次数 C4.5 多叉树 按熵减比例来挑选最佳特征， 熵减比例：熵减&#x2F;列的熵 直觉上是log2列的取值数量  能够处理离散型和连续型的属性类型，即将连续型的属性进行离散化处理； C4.5算法可以处理缺失值（常用概率权重方法） CART 不再采用熵 使用基尼指数(Gini index) 对连续值进行排序 两两求中值寻找最佳分裂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="决策树">
+<meta property="og:url" content="https://ikalista.github.io/2022/03/23/%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
 <meta property="og:site_name" content="Lee">
+<meta property="og:description" content="ID3 多叉树 按熵减挑选最佳特征，特征不会重用，只有有O(特征数量)的分裂次数 C4.5 多叉树 按熵减比例来挑选最佳特征， 熵减比例：熵减&#x2F;列的熵 直觉上是log2列的取值数量  能够处理离散型和连续型的属性类型，即将连续型的属性进行离散化处理； C4.5算法可以处理缺失值（常用概率权重方法） CART 不再采用熵 使用基尼指数(Gini index) 对连续值进行排序 两两求中值寻找最佳分裂">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-09T07:14:28.000Z">
-<meta property="article:modified_time" content="2021-10-09T07:14:28.964Z">
+<meta property="article:published_time" content="2022-03-23T01:26:44.056Z">
+<meta property="article:modified_time" content="2022-03-23T17:16:21.214Z">
 <meta property="article:author" content="Jiahui Li">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://ikalista.github.io/categories/">
+<link rel="canonical" href="https://ikalista.github.io/2022/03/23/%E5%86%B3%E7%AD%96%E6%A0%91/">
 
 
 <script id="page-configurations">
@@ -38,13 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>categories | Lee
-</title>
+  <title>决策树 | Lee</title>
   
 
 
@@ -151,43 +152,99 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="en">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ikalista.github.io/2022/03/23/%E5%86%B3%E7%AD%96%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.jpg">
+      <meta itemprop="name" content="Jiahui Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          决策树
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">categories
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
 
-<div class="post-meta">
+              <time title="Created: 2022-03-23 09:26:44" itemprop="dateCreated datePublished" datetime="2022-03-23T09:26:44+08:00">2022-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-24 01:16:21" itemprop="dateModified" datetime="2022-03-24T01:16:21+08:00">2022-03-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>ID3 多叉树 按熵减挑选最佳特征，特征不会重用，只有有O(特征数量)的分裂次数</p>
+<p>C4.5 多叉树 按熵减比例来挑选最佳特征，</p>
+<p>熵减比例：熵减/列的熵 直觉上是log2列的取值数量 </p>
+<p>能够处理离散型和连续型的属性类型，即将连续型的属性进行离散化处理；</p>
+<p>C4.5算法可以处理缺失值（常用概率权重方法）</p>
+<p>CART 不再采用熵 使用<strong>基尼指数(Gini index)</strong></p>
+<p>对连续值进行排序 两两求中值寻找最佳分裂点</p>
+<p>加入预剪枝 节点数量与基尼指数提升的阈值</p>
+<p>GBDT</p>
+<p>使用CART作为基学习器，因为是均方误差的损失函数，负梯度就是残差，所以</p>
+<p>XGBoost</p>
+<p>还是会遍历特征的所有值并排序，XGBoost的基本思想和GBDT相同，但是做了一些优化，比如二阶导数使损失函数更精准；正则项避免树过拟合；Block存储可以并行计算等。</p>
+<p>二阶泰勒展开</p>
+<p>lightgbm 对连续特征进行分箱，直方图</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/17/anaconda/" rel="prev" title="Anaconda">
+      <i class="fa fa-chevron-left"></i> Anaconda
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
